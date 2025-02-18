@@ -60,6 +60,6 @@
             </div>
         </div>
     </div>
-    @include('components.scripts')
+    @include('Administrator.components.scripts')
 </body>
 </html>

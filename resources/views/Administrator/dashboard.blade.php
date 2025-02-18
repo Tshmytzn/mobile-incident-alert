@@ -2,14 +2,14 @@
 
 <html lang="en">
 
-@include('components.head')
+@include('Administrator.components.head')
 
 <body>
     <script src="./dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page">
 
-        @include('components.aside')
-        @include('components.header')
+        @include('Administrator.components.aside')
+        @include('Administrator.components.header')
 
         <div class="page-wrapper">
             <!-- Page header -->
@@ -154,10 +154,10 @@
                     </div>
                 </div>
             </div>
-            @include('components.footer')
+            @include('Administrator.components.footer')
         </div>
     </div>
-    @include('components.scripts')
+    @include('Administrator.components.scripts')
 
 </body>
 

@@ -13,6 +13,11 @@ Route::get('/login', function () {
     return view('login');
 });
 
+// Dashboard
+Route::get('/alertdashboard', function () {
+    return view('Users.alertdashboard');
+});
+
 //Administrator Routes
 
 // Login
@@ -22,5 +27,5 @@ Route::get('/administrator', function () {
 
 // Dashboard
 Route::get('/dashboard', function () {
-    return view('Administrator.dashboard');
+    return view('Admin.dashboard');
 });
