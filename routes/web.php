@@ -6,12 +6,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//User Login
+//User's Routes  
+
+// Login
 Route::get('/login', function () {
     return view('login');
 });
 
-//Admin Login
+//Administrator Routes
+
+// Login
 Route::get('/administrator', function () {
-    return view('Adminlogin');
+    return view('adminlogin');
+});
+
+// Dashboard
+Route::get('/dashboard', function () {
+    return view('Administrator.dashboard');
 });
