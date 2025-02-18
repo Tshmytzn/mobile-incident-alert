@@ -22,42 +22,10 @@
                                 Overview
                             </div>
                             <h2 class="page-title">
-                                Vertical transparent layout
+                                Dashboard
                             </h2>
                         </div>
-                        <!-- Page title actions -->
-                        <div class="col-auto ms-auto d-print-none">
-                            <div class="btn-list">
-                                <span class="d-none d-sm-inline">
-                                    <a href="#" class="btn">
-                                        New view
-                                    </a>
-                                </span>
-                                <a href="#" class="btn btn-primary d-none d-sm-inline-block"
-                                    data-bs-toggle="modal" data-bs-target="#modal-report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M12 5l0 14" />
-                                        <path d="M5 12l14 0" />
-                                    </svg>
-                                    Create new report
-                                </a>
-                                <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
-                                    data-bs-target="#modal-report" aria-label="Create new report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M12 5l0 14" />
-                                        <path d="M5 12l14 0" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -67,127 +35,121 @@
                     <div class="row row-deck row-cards">
                         <div class="col-12">
                             <div class="row row-cards">
+                                <!-- Incident Alerts -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card card-sm">
                                         <div class="card-body">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <span
-                                                        class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            stroke-width="2" stroke="currentColor" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                    <span class="bg-danger text-white avatar">
+                                                        <!-- Alert Icon -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />
-                                                            <path d="M12 3v3m0 12v3" />
+                                                            <path d="M12 3v10m0 4v2" />
+                                                            <path d="M9 3h6a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-12a1 1 0 0 1 1 -1" />
                                                         </svg>
                                                     </span>
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        132 Sales
+                                                        15 Active Incidents
                                                     </div>
                                                     <div class="text-secondary">
-                                                        12 waiting payments
+                                                        3 Critical
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                        
+                                <!-- Responder Alerts -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card card-sm">
                                         <div class="card-body">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <span
-                                                        class="bg-green text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            stroke-width="2" stroke="currentColor" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                    <span class="bg-warning text-white avatar">
+                                                        <!-- Responder Icon -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                                            <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                                            <path d="M17 17h-11v-14h-2" />
-                                                            <path d="M6 5l14 1l-1 7h-13" />
+                                                            <path d="M12 2l9 5l-9 5l-9 -5z" />
+                                                            <path d="M3 12l9 5l9 -5" />
+                                                            <path d="M3 12v8h18v-8" />
                                                         </svg>
                                                     </span>
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        78 Orders
+                                                        8 Responders Assigned
                                                     </div>
                                                     <div class="text-secondary">
-                                                        32 shipped
+                                                        2 in progress
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                        
+                                <!-- Pending Incidents -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card card-sm">
                                         <div class="card-body">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <span
-                                                        class="bg-twitter text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            stroke-width="2" stroke="currentColor" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                    <span class="bg-info text-white avatar">
+                                                        <!-- Pending Icon -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z" />
+                                                            <path d="M12 2v10m0 4v2" />
+                                                            <path d="M3 6h18" />
                                                         </svg>
                                                     </span>
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        623 Shares
+                                                        5 Pending Alerts
                                                     </div>
                                                     <div class="text-secondary">
-                                                        16 today
+                                                        1 Critical
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                        
+                                <!-- Resolved Incidents -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card card-sm">
                                         <div class="card-body">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <span
-                                                        class="bg-facebook text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            stroke-width="2" stroke="currentColor" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                    <span class="bg-success text-white avatar">
+                                                        <!-- Resolved Icon -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                                                            <path d="M5 12l5 5l10 -10" />
+                                                            <path d="M5 12l5 5l10 -10" />
                                                         </svg>
                                                     </span>
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        132 Likes
+                                                        35 Resolved Incidents
                                                     </div>
                                                     <div class="text-secondary">
-                                                        21 today
+                                                        8 last 24 hours
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                        
                             </div>
-                        </div>
+                        </div>                        
 
                     </div>
                 </div>
