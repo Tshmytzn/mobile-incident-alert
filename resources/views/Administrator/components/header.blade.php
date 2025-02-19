@@ -163,7 +163,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                   <a href="/settings" class="dropdown-item">Settings</a>
-                  <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                  <a href="/" class="dropdown-item text-danger">Logout</a>
               </div>
               
             </div>
