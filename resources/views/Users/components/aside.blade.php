@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="./">
+                    <a class="nav-link" href="/usersreports">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -57,7 +57,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="./">
+                    <a class="nav-link" href="/notification">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -75,7 +75,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/reports">
+                    <a class="nav-link" href="/profilesettings">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -94,7 +94,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/reports">
+                    <a class="nav-link" href="/">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="red" stroke-width="2" stroke-linecap="round"
