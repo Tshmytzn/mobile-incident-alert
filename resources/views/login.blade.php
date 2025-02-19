@@ -28,13 +28,14 @@
     <script src="./dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page page-center">
         <div class="container container-tight py-4">
-            <div class="text-center mb-4">
-                <a href="#" class="navbar-brand navbar-brand-autodark">
-                    <img src="./static/lasalle_logo.png" style="width: 210px; height: 70px;" alt="Tabler" class="navbar-brand-image">
 
-                </a>
-            </div>
-            <div class="card card-md">
+            <div class="card card-md ">
+                <div class="text-center mb-4">
+                    <a href="#" class="navbar-brand navbar-brand-autodark mt-5">
+                        <img src="./static/lasalle_logo.png" style="width: 210px; height: 70px;" alt="Tabler" class="navbar-brand-image">
+    
+                    </a>
+                </div>
                 <div class="card-body">
                     <h2 class="h2 text-center mb-4">Login to your account</h2>
                     <form action="./" method="get" autocomplete="off" novalidate>
