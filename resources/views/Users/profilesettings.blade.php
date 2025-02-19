@@ -2,14 +2,14 @@
 
 <html lang="en">
 
-@include('Administrator.components.head')
+@include('Users.components.head')
 
 <body>
     <script src="./dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page">
 
-        @include('Administrator.components.aside')
-        @include('Administrator.components.header')
+        @include('Users.components.aside')
+        @include('Users.components.header')
 
         <div class="page-wrapper">
             <!-- Page header -->
@@ -22,7 +22,7 @@
                                 Overview
                             </div>
                             <h2 class="page-title">
-                                Dashboard
+                                Profile Settings
                             </h2>
                         </div>
 
@@ -37,10 +37,10 @@
                     </div>
                 </div>
             </div>
-            @include('Administrator.components.footer')
+            @include('Users.components.footer')
         </div>
     </div>
-    @include('Administrator.components.scripts')
+    @include('Users.components.scripts')
 
 </body>
 

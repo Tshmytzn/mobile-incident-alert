@@ -13,10 +13,26 @@ Route::get('/login', function () {
     return view('login');
 });
 
-// Dashboard
+// Users Reports
 Route::get('/alertdashboard', function () {
     return view('Users.alertdashboard');
 });
+
+// Users Reports
+Route::get('/usersreports', function () {
+    return view('Users.myreports');
+});
+
+// Notification
+Route::get('/notification', function () {
+    return view('Users.notification');
+});
+
+// Profile Settings
+Route::get('/profilesettings', function () {
+    return view('Users.profilesettings');
+});
+
 
 //Administrator Routes
 
