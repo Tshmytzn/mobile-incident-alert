@@ -10,7 +10,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['student', 'faculty', 'staff']);
+            $table->enum('role', ['Student', 'Faculty', 'Staff']);
             $table->string('phone_number', 20)->nullable();
             $table->string('address')->nullable();
             $table->string('emergency_contact_name')->nullable();

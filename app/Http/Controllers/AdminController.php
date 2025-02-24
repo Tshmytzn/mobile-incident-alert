@@ -37,7 +37,7 @@ class AdminController extends Controller
         $data->name = $request->name;
         $data->email =$request->email;
         $data->password = $request->password;
-        $data->role = $request->role;
+        $data->role = ucfirst($request->role);
         $data->save();
 
         return response()->json(['message' => 'User Added Successfully', 'status'=> true]);
