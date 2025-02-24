@@ -176,42 +176,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
             @include('Administrator.components.footer')
         </div>
     </div>
     @include('Administrator.components.scripts')
-    <!-- Leaflet JS & CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize the map
-            var map = L.map('map', {
-            center: [10.6698, 122.9459], 
-            zoom: 21, 
-            zoomControl: false,
-            dragging: false, 
-            scrollWheelZoom: false, 
-            doubleClickZoom: false, 
-            touchZoom: false, 
-            boxZoom: false, 
-            keyboard: false 
-        });
-            // Add OpenStreetMap tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-
-            // Add a marker for La Salle Bacolod
-            L.marker([10.6698, 122.9459]).addTo(map)
-                .bindPopup("<b>La Salle Bacolod</b><br>University of St. La Salle.")
-                .openPopup();
-        });
-    </script>
 
 </body>
 

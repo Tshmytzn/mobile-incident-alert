@@ -26,6 +26,13 @@
                             </h2>
                         </div>
 
+                        <!-- Map Section -->
+                        <div class="col-12 mt-2">
+                            <div class="card-body">
+                                <div id="map" style="height: 300px;"></div>
+                            </div>
+                        </div>
+
                         <div class="mt-5">
                             <table id="userTable" class="table table-hover ">
                                 <thead>
