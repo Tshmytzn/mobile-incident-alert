@@ -6,8 +6,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
-            <a href=".">
-                <img src="./static/lasalle_logo.png" style="width: 140px; height: 50px;" alt="Tabler"
+            <a href="/alertdashboard">
+                <img src="{{asset('./static/lasalle_logo.png')}}" style="width: 140px; height: 50px;" alt="Tabler"
                     class="navbar-brand-image">
             </a>
         </h1>

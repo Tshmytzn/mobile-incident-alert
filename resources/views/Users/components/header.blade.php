@@ -162,10 +162,11 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <a href="/profilesettings" class="dropdown-item">Settings</a>
-                  <a data-bs-target="#logoutModal" data-bs-toggle="modal" class="dropdown-item text-danger">Logout</a>
-              </div>
-              
+                    <a href="/profilesettings" class="dropdown-item">Settings</a>
+                    <a data-bs-target="#logoutModal" data-bs-toggle="modal"
+                        class="dropdown-item text-danger">Logout</a>
+                </div>
+
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
