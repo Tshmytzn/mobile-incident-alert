@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminAuth;
+
+require __DIR__ . '/adminroute.php';
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,39 +38,40 @@ Route::get('/profilesettings', function () {
 });
 
 
-//Administrator Routes
 
 // Login
 Route::get('/administrator', function () {
     return view('adminlogin');
 });
+//Administrator Routes
+Route::middleware([AdminAuth::class])->group(function () {
+        // Dashboard
+        Route::get('/dashboard', function () {
+            return view('Administrator.dashboard');
+        });
 
-// Dashboard
-Route::get('/dashboard', function () {
-    return view('Administrator.dashboard');
-});
+        // User Management Page
+        Route::get('/users', function () {
+            return view('Administrator.users');
+        });
 
-// User Management Page
-Route::get('/users', function () {
-    return view('Administrator.users');
-});
+        // Incident Management Page
+        Route::get('/incidents', function () {
+            return view('Administrator.incidents');
+        });
 
-// Incident Management Page
-Route::get('/incidents', function () {
-    return view('Administrator.incidents');
-});
+        // Responder Management Page
+        Route::get('/responders', function () {
+            return view('Administrator.responders');
+        });
 
-// Responder Management Page
-Route::get('/responders', function () {
-    return view('Administrator.responders');
-});
+        // Reports Management Page
+        Route::get('/reports', function () {
+            return view('Administrator.reports');
+        });
 
-// Reports Management Page
-Route::get('/reports', function () {
-    return view('Administrator.reports');
-});
-
-// Settings Page
-Route::get('/settings', function () {
-    return view('Administrator.settings');
+        // Settings Page
+        Route::get('/settings', function () {
+            return view('Administrator.settings');
+        });
 });

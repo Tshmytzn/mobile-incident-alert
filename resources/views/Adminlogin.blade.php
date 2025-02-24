@@ -11,6 +11,7 @@
     <link href="./dist/css/tabler-payments.min.css?1692870487" rel="stylesheet" />
     <link href="./dist/css/tabler-vendors.min.css?1692870487" rel="stylesheet" />
     <link href="./dist/css/demo.min.css?1692870487" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -37,10 +38,11 @@
                 </div>
                 <div class="card-body">
                     <h2 class="h2 text-center mb-4">Administrator's Login</h2>
-                    <form action="./" method="get" autocomplete="off" novalidate>
+                    <form id="admin_login_form" method="POST" autocomplete="off" novalidate>
+                        @csrf
                         <div class="mb-3">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" placeholder="admin@lasalle.edu.ph" autocomplete="off">
+                            <input type="email" class="form-control" name="email" placeholder="admin@lasalle.edu.ph" autocomplete="off" required>
                         </div>
                         <div class="mb-2">
                             <label class="form-label">
@@ -48,12 +50,12 @@
 
                             </label>
                             <div class="input-group input-group-flat">
-                                <input type="password" class="form-control" placeholder="Your password"
-                                    autocomplete="off">
+                                <input type="password" class="form-control" name="password" placeholder="Your password"
+                                    autocomplete="off" required>
                             </div>
                         </div>
                         <div class="form-footer">
-                            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                            <button type="button" class="btn btn-primary w-100" onclick="AdminLogin('admin_login_form')">Sign in</button>
                         </div>
                     </form>
                 </div>
@@ -61,5 +63,7 @@
         </div>
     </div>
     @include('Administrator.components.scripts')
+    <script src="{{ asset('js/AdminScript.js') }}"></script>
+    <script src="{{ asset('js/RequestScript.js') }}"></script>
 </body>
 </html>
