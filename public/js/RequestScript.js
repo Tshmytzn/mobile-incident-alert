@@ -60,7 +60,7 @@ function PostRequest(formID, buttonID, buttonSpan, Url) {
         span.style.display = "inline";
         button.disabled = false;
         const responseMessage = JSON.parse(response);
-        if (error) {
+        if (!responseMessage.status) {
             Swal.fire({
                 toast: true,
                 position: "top-end",
@@ -74,10 +74,21 @@ function PostRequest(formID, buttonID, buttonSpan, Url) {
                 toast: true,
                 position: "top-end",
                 icon: "success",
-                title: responseMessage,
+                title: responseMessage.message,
                 showConfirmButton: false,
                 timer: 1500,
             });
+            form.reset();
+        }
+    });
+}
+
+function GetRequest(Url) {
+    sendRequest("GET", Url, null, function (error, response) {
+        if (error) {
+            console.error("GET Error:", error, response);
+        } else {
+            console.log("GET Success:", response);
         }
     });
 }
