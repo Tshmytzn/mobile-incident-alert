@@ -64,10 +64,6 @@
                                 'buttonFormID'=>'admin_login_form',
                                 'buttonUrl'=>'/save-data'
                             ])
-                            {{-- <button type="button" id="login-button" class="btn btn-primary w-100" onclick="AdminLogin('admin_login_form')">
-                                <div class="spinner-border " role="status">
-                                </div>
-                                <span>Sign in</span></button> --}}
                         </div>
                     </form>
                 </div>
