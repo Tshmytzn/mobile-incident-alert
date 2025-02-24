@@ -43,10 +43,14 @@
                                                 <div class="col-auto">
                                                     <span class="bg-danger text-white avatar">
                                                         <!-- Alert Icon -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                                            width="24" height="24" viewBox="0 0 24 24"
+                                                            stroke-width="2" stroke="currentColor" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                             <path d="M12 3v10m0 4v2" />
-                                                            <path d="M9 3h6a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-12a1 1 0 0 1 1 -1" />
+                                                            <path
+                                                                d="M9 3h6a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-12a1 1 0 0 1 1 -1" />
                                                         </svg>
                                                     </span>
                                                 </div>
@@ -62,7 +66,7 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Responder Alerts -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card card-sm">
@@ -71,7 +75,10 @@
                                                 <div class="col-auto">
                                                     <span class="bg-warning text-white avatar">
                                                         <!-- Responder Icon -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                                            width="24" height="24" viewBox="0 0 24 24"
+                                                            stroke-width="2" stroke="currentColor" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                             <path d="M12 2l9 5l-9 5l-9 -5z" />
                                                             <path d="M3 12l9 5l9 -5" />
@@ -91,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Pending Incidents -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card card-sm">
@@ -100,7 +107,10 @@
                                                 <div class="col-auto">
                                                     <span class="bg-info text-white avatar">
                                                         <!-- Pending Icon -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                                            width="24" height="24" viewBox="0 0 24 24"
+                                                            stroke-width="2" stroke="currentColor" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                             <path d="M12 2v10m0 4v2" />
                                                             <path d="M3 6h18" />
@@ -119,7 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Resolved Incidents -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card card-sm">
@@ -128,7 +138,10 @@
                                                 <div class="col-auto">
                                                     <span class="bg-success text-white avatar">
                                                         <!-- Resolved Icon -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                                            width="24" height="24" viewBox="0 0 24 24"
+                                                            stroke-width="2" stroke="currentColor" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                             <path d="M5 12l5 5l10 -10" />
                                                             <path d="M5 12l5 5l10 -10" />
@@ -147,17 +160,58 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                             </div>
-                        </div>                        
+                        </div>
 
                     </div>
+                    <!-- Map Section -->
+                    <div class="col-12 mt-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">La Salle Bacolod Campus Map</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="map" style="height: 400px;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
             @include('Administrator.components.footer')
         </div>
     </div>
     @include('Administrator.components.scripts')
+    <!-- Leaflet JS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize the map
+            var map = L.map('map', {
+            center: [10.6698, 122.9459], 
+            zoom: 21, 
+            zoomControl: false,
+            dragging: false, 
+            scrollWheelZoom: false, 
+            doubleClickZoom: false, 
+            touchZoom: false, 
+            boxZoom: false, 
+            keyboard: false 
+        });
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Add a marker for La Salle Bacolod
+            L.marker([10.6698, 122.9459]).addTo(map)
+                .bindPopup("<b>La Salle Bacolod</b><br>University of St. La Salle.")
+                .openPopup();
+        });
+    </script>
 
 </body>
 
