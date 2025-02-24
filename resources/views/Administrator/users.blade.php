@@ -59,33 +59,9 @@
         </div>
     </div>
     @include('Administrator.components.scripts')
-
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": "#",
-                    "type": "GET"
-                },
-                "columns": [{
-                        "data": "name"
-                    },
-                    {
-                        "data": "email"
-                    },
-                    {
-                        "data": "role"
-                    },
-                    {
-                        "data": "phone_number"
-                    }
-                ]
-            });
-        });
-    </script>
-
+    <script src="{{ asset('js/admin/AdminLogin.js') }}"></script>
+    <script src="{{ asset('js/RequestScript.js') }}"></script>
+    
 </body>
 
 </html>
