@@ -12,7 +12,7 @@ class Admin extends Model
 
     protected $table = 'admin';
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'admin_type'];
 
     public function setPasswordAttribute($value)
     {
