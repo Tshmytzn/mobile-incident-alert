@@ -12,6 +12,7 @@
     <link href="./dist/css/demo.min.css?1692870487" rel="stylesheet"/>
     {{-- datatables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
       @import url('https://rsms.me/inter/inter.css');
