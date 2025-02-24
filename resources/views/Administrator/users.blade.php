@@ -64,7 +64,7 @@
     @include('Administrator.components.modals')
 
     @include('Administrator.components.scripts')
-    <script src="{{ asset('js/admin/AdminLogin.js') }}"></script>
+    <script src="{{ asset('js/admin/AdminUserManagement.js') }}"></script>
     <script src="{{ asset('js/RequestScript.js') }}"></script>
 
 </body>
