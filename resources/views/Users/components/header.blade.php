@@ -163,7 +163,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                   <a href="/profilesettings" class="dropdown-item">Settings</a>
-                  <a href="./sign-in.html" class="dropdown-item text-danger">Logout</a>
+                  <a data-bs-target="#logoutModal" data-bs-toggle="modal" class="dropdown-item text-danger">Logout</a>
               </div>
               
             </div>

@@ -37,6 +37,7 @@
                     </div>
                 </div>
             </div>
+            @include('Users.components.modals')
             @include('Users.components.footer')
         </div>
     </div>
