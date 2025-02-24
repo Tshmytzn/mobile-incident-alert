@@ -13,7 +13,7 @@
 
         <div class="page-wrapper">
             <!-- Page header -->
-            <div class="page-header d-print-none">
+            {{-- <div class="page-header d-print-none">
                 <div class="container-xl">
                     <div class="row g-2 align-items-center">
                         <div class="col">
@@ -28,59 +28,56 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Page body -->
             <div class="page-body">
                 <div class="container-xl">
-                    <div class="row row-deck row-cards">
-                        <div class="card">
-                            <div class="row g-0">
-
-                                <div class="col-12 col-md-9 d-flex flex-column">
-                                    <!-- My Account Tab -->
-                                    <div class="tab-pane fade show active" id="useraccount">
-                                        <div class="card-body">
-                                            <h2 class="mb-4">My Account</h2>
-                                            <div class="row align-items-center">
-                                                <div class="col-auto"><span class="avatar avatar-xl"
-                                                        style="background-image: url(./static/avatars/000m.jpg)"></span>
-                                                </div>
-                                                <div class="col-auto"><a href="#" class="btn">Change
-                                                        avatar</a></div>
-                                                <div class="col-auto"><a href="#"
-                                                        class="btn btn-ghost-danger">Delete avatar</a></div>
-                                            </div>
-                                            <h3 class="card-title mt-4">User Information</h3>
-                                            <div class="row g-3">
-                                                <div class="col-12">
-                                                    <div class="form-label">Name</div>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-label">Email</div>
-                                                    <input type="email" class="form-control">
-                                                </div>
-
-                                            </div>
-
-                                            <h3 class="card-title mt-4">Password</h3>
-                                            <p class="card-subtitle">You can set a permanent password if you don't
-                                                want to use temporary login codes.</p>
-                                            <div>
-                                                <a href="#" class="btn">Set new password</a>
-                                            </div>
-                                            <div class="card-footer bg-transparent mt-2">
-                                                <div class="btn-list justify-content-end">
-                                                    <button class="btn btn-primary"> Save Changes</button>
-                                                </div>
-                                            </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="card shadow-sm rounded-3">
+                                <div class="card-header bg-light text-center py-3">
+                                    <h3 class="mb-0">My Account Settings</h3>
+                                </div>
+                                <div class="card-body p-4">
+                                    <!-- Avatar Section -->
+                                    <div class="text-center mb-4">
+                                        <img src="./static/avatars/000m.jpg" class="rounded-circle border" width="100" height="100" alt="User Avatar">
+                                        <div class="mt-2">
+                                            <button class="btn btn-outline-primary btn-sm"><i class="bi bi-image"></i> Change Avatar</button>
+                                            <button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Delete</button>
                                         </div>
                                     </div>
+                                    
+                                    <!-- User Information -->
+                                    <fieldset class="border rounded p-3 mb-4">
+                                        <legend class="float-none w-auto px-2">User Information</legend>
+                                        <div class="mb-3">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" class="form-control" placeholder="John Doe">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email Address</label>
+                                            <input type="email" class="form-control" placeholder="john.doe@example.com" disabled>
+                                        </div>
+                                    </fieldset>
+                                    
+                                    <!-- Password Section -->
+                                    <fieldset class="border rounded p-3 mb-4">
+                                        <legend class="float-none w-auto px-2">Security</legend>
+                                        <p class="text-muted">Set a permanent password if you don't want to use temporary login codes.</p>
+                                        <button class="btn btn-outline-dark"><i class="bi bi-shield-lock"></i> Set New Password</button>
+                                    </fieldset>
+                                </div>
+                                
+                                <!-- Save Changes Button -->
+                                <div class="card-footer bg-light text-end">
+                                    <button class="btn btn-primary"><i class="bi bi-save"></i> Save Changes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 @include('Administrator.components.footer')
             </div>
 
