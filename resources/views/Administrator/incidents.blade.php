@@ -16,14 +16,19 @@
             <div class="page-header d-print-none">
                 <div class="container-xl">
                     <div class="row g-2 align-items-center">
-                        <div class="col">
-                            <!-- Page pre-title -->
-                            <div class="page-pretitle">
-                                Overview
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <!-- Page pre-title -->
+                                <div class="page-pretitle">
+                                    Overview
+                                </div>
+                                <h2 class="page-title">
+                                    Incident Management
+                                </h2>
                             </div>
-                            <h2 class="page-title">
-                                Incident Management
-                            </h2>
+                            <button class="btn btn-outline-success rounded-circle shadow-sm" data-bs-toggle="modal"
+                                data-bs-target="#settingsModal">
+                                <i class="bi bi-gear-fill"></i> </button>
                         </div>
 
                         <!-- Map Section -->

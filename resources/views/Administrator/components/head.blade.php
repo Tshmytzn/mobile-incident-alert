@@ -14,6 +14,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Leaflet JS & CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <style>
         @import url('https://rsms.me/inter/inter.css');
