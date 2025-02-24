@@ -27,9 +27,12 @@
                         </div>
 
                         <div class="d-flex justify-content-end mb-3">
-                            <button class="btn btn-primary" id="addUserBtn">Add User</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="addUserBtn"
+                                data-bs-target="#adduser"> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M16 19h6" /><path d="M19 16v6" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4" /></svg>
+                                Add User </button>
+
                         </div>
-                        
+
                         <table id="userTable" class="table table-hover">
                             <thead>
                                 <tr>
@@ -40,7 +43,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        
+
                     </div>
                 </div>
             </div>
@@ -50,7 +53,7 @@
                     <div class="row row-deck row-cards">
 
 
-                        
+
 
                     </div>
                 </div>
@@ -58,10 +61,12 @@
             @include('Administrator.components.footer')
         </div>
     </div>
+    @include('Administrator.components.modals')
+
     @include('Administrator.components.scripts')
     <script src="{{ asset('js/admin/AdminLogin.js') }}"></script>
     <script src="{{ asset('js/RequestScript.js') }}"></script>
-    
+
 </body>
 
 </html>
