@@ -55,7 +55,19 @@
                             </div>
                         </div>
                         <div class="form-footer">
-                            <button type="button" class="btn btn-primary w-100" onclick="AdminLogin('admin_login_form')">Sign in</button>
+                            @include("Administrator.components.button",
+                                [
+                                'buttonLabel'=>'Sign in',
+                                'buttonID'=>"login-button",
+                                'buttonSpan'=>'button-span',
+                                'buttonFunction'=>'AdminLogin',
+                                'buttonFormID'=>'admin_login_form',
+                                'buttonUrl'=>'/save-data'
+                            ])
+                            {{-- <button type="button" id="login-button" class="btn btn-primary w-100" onclick="AdminLogin('admin_login_form')">
+                                <div class="spinner-border " role="status">
+                                </div>
+                                <span>Sign in</span></button> --}}
                         </div>
                     </form>
                 </div>
@@ -63,7 +75,7 @@
         </div>
     </div>
     @include('Administrator.components.scripts')
-    <script src="{{ asset('js/AdminScript.js') }}"></script>
+    <script src="{{ asset('js/admin/AdminLogin.js') }}"></script>
     <script src="{{ asset('js/RequestScript.js') }}"></script>
 </body>
 </html>
