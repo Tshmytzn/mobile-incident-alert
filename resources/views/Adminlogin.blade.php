@@ -62,7 +62,7 @@
                                 'buttonSpan'=>'button-span',
                                 'buttonFunction'=>'AdminLogin',
                                 'buttonFormID'=>'admin_login_form',
-                                'buttonUrl'=>'/save-data'
+                                'buttonUrl'=>'/admin-login'
                             ])
                         </div>
                     </form>

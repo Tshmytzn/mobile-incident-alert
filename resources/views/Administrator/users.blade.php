@@ -33,13 +33,14 @@
 
                         </div>
 
-                        <table id="userTable" class="table table-hover">
+                        <table id="userTable" class="table table-hover w-100">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Phone Number</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                         </table>
