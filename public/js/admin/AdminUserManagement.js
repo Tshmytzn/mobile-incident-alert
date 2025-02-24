@@ -2,6 +2,7 @@ function GetUserData(){
 
 }
 
+
 $(document).ready(function () {
     // $("#userTable").DataTable({
     //     processing: true,
