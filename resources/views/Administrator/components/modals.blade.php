@@ -63,14 +63,15 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Add New User</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Update New User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="add-user-form" method="post">
+                <form id="update-user-form" method="post">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
+                            <input type="text" name="userid" id="user-update-id" required hidden>
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control" name="name" id="update-user-name" placeholder="Enter full name" required>
                         </div>
@@ -83,7 +84,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Enter password"
-                                required>
+                                >
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Role</label>
@@ -102,14 +103,14 @@
                 @include(
                     "Administrator.components.button",
                     [
-                        'buttonWidth' => 'w-100',
+                        'buttonWidth' => '',
                         'buttonLabel' => 'Save',
-                        'buttonID' => "add-user-button",
-                        'buttonSpan' => 'add-user-span',
-                        'buttonModal' => 'none',
-                        'buttonFunction' => 'PostRequest',
-                        'buttonFormID' => 'add-user-form',
-                        'buttonUrl' => '/add-user'
+                        'buttonID' => "update-user-button",
+                        'buttonSpan' => 'update-user-span',
+                        'buttonModal' => 'updateuser',
+                        'buttonFunction' => 'UpdateUser',
+                        'buttonFormID' => 'update-user-form',
+                        'buttonUrl' => '/update-user'
                     ]
                 )
             </div>

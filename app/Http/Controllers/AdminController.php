@@ -53,4 +53,27 @@ class AdminController extends Controller
         $data = AppUser::all();
         return response()->json(['message' => 'User Added Successfully','data'=>$data, 'status' => true]);
     }
+
+    public function UpdateUser(Request $request)
+    {
+        $checkCurrentUser = AppUser::where('email', $request->email)
+            ->where('id', $request->userid)
+            ->first();
+            if(!$checkCurrentUser){
+                $check = AppUser::where('email', $request->email)->first();
+                if (!empty($check)) {
+                    return response()->json(['message' => 'Email Already Exist', 'status' => false]);
+                }
+            }
+        $user = AppUser::where('id', $request->userid)->first();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if(!empty($request->password)){
+            $user->password = $request->password;
+        }
+        $user->role = ucfirst($request->role);
+        $user->save();
+
+        return response()->json(['message' => 'User Updated Successfully', 'status' => true]);
+    }
 }

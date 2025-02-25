@@ -6,7 +6,6 @@ function GetUserData() {
         if (!responseMessage.status) {
             console.error("GET Error:", error, response);
         } else {
-            console.log(responseMessage.data);
 
             // Destroy existing DataTable if it exists
             if ($.fn.DataTable.isDataTable("#userTable")) {
@@ -42,10 +41,18 @@ function GetUserData() {
 function UpdateUserModal(id, name, email, role) {
     document.getElementById("update-user-name").value = name;
     document.getElementById("update-user-email").value = email;
-    document.getElementById("update-user-role").value = "role";
+    document.getElementById("update-user-role").value = role;
+    document.getElementById("user-update-id").value = id;
 }
 
 async function AddUser(formID, buttonID, buttonSpan, Url, Modal) {
+    const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
+    if (status) {
+        GetUserData();
+    }
+}
+
+async function UpdateUser(formID, buttonID, buttonSpan, Url, Modal) {
     const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
     if (status) {
         GetUserData();
