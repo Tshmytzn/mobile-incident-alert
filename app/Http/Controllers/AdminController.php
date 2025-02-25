@@ -49,10 +49,23 @@ class AdminController extends Controller
         return response()->json(['message' => 'User Added Successfully', 'status'=> true]);
     }
 
-    public function GetUser()
+    public function GetUser(Request $request)
     {
-        $data = AppUser::all();
-        return response()->json(['message' => '','data'=>$data, 'status' => true]);
+        $data = AppUser::paginate(10); // Show 10 users per page
+
+        return response()->json([
+            'message' => '',
+            'data' => $data->items(),  // Get the actual records
+            'status' => true,
+            'pagination' => [
+                'current_page' => $data->currentPage(),
+                'last_page' => $data->lastPage(),
+                'per_page' => $data->perPage(),
+                'total' => $data->total(),
+                'next_page_url' => $data->nextPageUrl(),
+                'prev_page_url' => $data->previousPageUrl(),
+            ]
+        ]);
     }
 
     public function UpdateUser(Request $request)
@@ -95,10 +108,23 @@ class AdminController extends Controller
         return response()->json(['message' => 'Responder Added Successfully', 'status' => true]);
     }
 
-    public function GetResponder()
+    public function GetResponder(Request $request)
     {
-        $data = Responder::all();
-        return response()->json(['message' => '', 'data' => $data, 'status' => true]);
+        $data = Responder::paginate(10); // Show 10 responders per page
+
+        return response()->json([
+            'message' => '',
+            'data' => $data->items(),  // Extract actual records
+            'status' => true,
+            'pagination' => [
+                'current_page' => $data->currentPage(),
+                'last_page' => $data->lastPage(),
+                'per_page' => $data->perPage(),
+                'total' => $data->total(),
+                'next_page_url' => $data->nextPageUrl(),
+                'prev_page_url' => $data->previousPageUrl(),
+            ]
+        ]);
     }
 
     public function UpdateResponder(Request $request)
