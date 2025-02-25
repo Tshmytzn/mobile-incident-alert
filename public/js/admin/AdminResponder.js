@@ -1,12 +1,18 @@
-function GetUserData() {
-    sendRequest("GET", "/get-user", null, function (error, response) {
+async function AddResponder(formID, buttonID, buttonSpan, Url, Modal) {
+    const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
+    if (status) {
+        GetResponderData();
+    }
+}
+
+function GetResponderData() {
+    sendRequest("GET", "/get-responder", null, function (error, response) {
         const responseMessage =
             typeof response === "string" ? JSON.parse(response) : response;
 
         if (!responseMessage.status) {
             console.error("GET Error:", error, response);
         } else {
-
             // Destroy existing DataTable if it exists
             if ($.fn.DataTable.isDataTable("#userTable")) {
                 $("#userTable").DataTable().destroy();
@@ -21,15 +27,14 @@ function GetUserData() {
                 data: responseMessage.data, // Set data directly
                 columns: [
                     { data: "name" },
-                    { data: "email" },
-                    { data: "role" },
-                    { data: "phone_number", defaultContent: "N/A" }, // Handle missing phone numbers
+                    { data: "username" },
+                    { data: "type" },
                     {
                         data: null,
                         orderable: false,
                         searchable: false,
                         render: function (data, type, row) {
-                            return `<button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#updateuser" onclick="UpdateUserModal('${row.id}','${row.name}','${row.email}','${row.role}')">Action</button>`;
+                            return `<button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#updateResponder" onclick="UpdateResponderModal('${row.id}','${row.name}','${row.username}','${row.type}')">Action</button>`;
                         },
                     },
                 ],
@@ -38,27 +43,20 @@ function GetUserData() {
     });
 }
 
-function UpdateUserModal(id, name, email, role) {
-    document.getElementById("update-user-name").value = name;
-    document.getElementById("update-user-email").value = email;
-    document.getElementById("update-user-role").value = role;
-    document.getElementById("user-update-id").value = id;
+function UpdateResponderModal(id, name, username, role) {
+    document.getElementById("update-responder-name").value = name;
+    document.getElementById("update-responder-username").value = username;
+    document.getElementById("update-responder-role").value = role;
+    document.getElementById("update-responder-id").value = id;
 }
 
-async function AddUser(formID, buttonID, buttonSpan, Url, Modal) {
+async function UpdateResponder(formID, buttonID, buttonSpan, Url, Modal) {
     const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
     if (status) {
-        GetUserData();
-    }
-}
-
-async function UpdateUser(formID, buttonID, buttonSpan, Url, Modal) {
-    const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
-    if (status) {
-        GetUserData();
+        GetResponderData();
     }
 }
 
 $(document).ready(function () {
-    GetUserData();
+    GetResponderData();
 });

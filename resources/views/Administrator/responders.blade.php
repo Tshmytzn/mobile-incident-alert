@@ -44,7 +44,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Username</th>
                                     <th>Role</th>
                                     <th>Phone Number</th>
                                 </tr>
@@ -67,17 +67,9 @@
         </div>
     </div>
     @include('Administrator.components.scripts')
-
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable({
-
-
-            });
-        });
-    </script>
-
-
+    <script src="{{ asset('js/admin/AdminResponder.js') }}"></script>
+    <script src="{{ asset('js/RequestScript.js') }}"></script>
+    
 </body>
 
 </html>
