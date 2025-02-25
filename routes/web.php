@@ -78,6 +78,12 @@ Route::middleware([AdminAuth::class])->group(function () {
 });
 
 //Responder Routes 
+
+// Login
+Route::get('/responder', function () {
+    return view('Responderlogin');
+});
+
 // Dashboard
 Route::get('/responderdashboard', function () {
     return view('Responder.dashboard');
