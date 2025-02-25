@@ -51,22 +51,41 @@ class AdminController extends Controller
 
     public function GetUser(Request $request)
     {
-        $data = AppUser::paginate(10); // Show 10 users per page
+        $query = AppUser::query();
+
+        // Search functionality
+        if ($request->has('search') && !empty($request->search['value'])) {
+            $search = $request->search['value'];
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('role', 'like', "%{$search}%")
+                ->orWhere('phone_number', 'like', "%{$search}%");
+            });
+        }
+
+        // Handle pagination
+        $perPage = $request->input('length', 10); // Number of records per page
+        $start = $request->input('start', 0); // Offset
+        $currentPage = ($start / $perPage) + 1; // Calculate current page
+
+        // Paginate the data
+        $data = $query->paginate($perPage, ['*'], 'page', $currentPage);
 
         return response()->json([
             'message' => '',
-            'data' => $data->items(),  // Get the actual records
+            'data' => $data->items(), // Return only the paginated data
             'status' => true,
             'pagination' => [
+                'draw' => intval($request->input('draw')), // Ensure draw is returned for DataTables
                 'current_page' => $data->currentPage(),
                 'last_page' => $data->lastPage(),
                 'per_page' => $data->perPage(),
                 'total' => $data->total(),
-                'next_page_url' => $data->nextPageUrl(),
-                'prev_page_url' => $data->previousPageUrl(),
             ]
         ]);
     }
+
 
     public function UpdateUser(Request $request)
     {
@@ -110,19 +129,36 @@ class AdminController extends Controller
 
     public function GetResponder(Request $request)
     {
-        $data = Responder::paginate(10); // Show 10 responders per page
+        $query = Responder::query();
+
+        // Handle searching
+        if ($request->has('search') && !empty($request->search['value'])) {
+            $search = $request->search['value'];
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('username', 'like', "%{$search}%")
+                ->orWhere('type', 'like', "%{$search}%");
+            });
+        }
+
+        // Handle pagination
+        $perPage = $request->input('length', 10); // Number of records per page
+        $start = $request->input('start', 0); // Offset
+        $currentPage = ($start / $perPage) + 1; // Calculate current page
+
+        // Paginate the query
+        $data = $query->paginate($perPage, ['*'], 'page', $currentPage);
 
         return response()->json([
             'message' => '',
-            'data' => $data->items(),  // Extract actual records
+            'data' => $data->items(),
             'status' => true,
             'pagination' => [
+                'draw' => intval($request->input('draw')), // Return draw for DataTables
                 'current_page' => $data->currentPage(),
                 'last_page' => $data->lastPage(),
                 'per_page' => $data->perPage(),
                 'total' => $data->total(),
-                'next_page_url' => $data->nextPageUrl(),
-                'prev_page_url' => $data->previousPageUrl(),
             ]
         ]);
     }

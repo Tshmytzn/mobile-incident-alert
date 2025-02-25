@@ -14,35 +14,34 @@ function GetResponderData() {
     // Clear the table body to avoid duplicated data
     $("#userTable tbody").empty();
 
-    // Reinitialize DataTable with server-side pagination
+    // Reinitialize DataTable with server-side pagination & searching
     $("#userTable").DataTable({
         processing: true,
         serverSide: true, // Enable server-side processing
         ajax: function (data, callback) {
-            let page = data.start / data.length + 1; // Calculate current page
-            sendRequest(
-                "GET",
-                `/get-responder?page=${page}`,
-                null,
-                function (error, response) {
-                    if (error) {
-                        console.error("Pagination Error:", error);
-                        return;
-                    }
+            let url = `/get-responder?start=${data.start}&length=${data.length}&draw=${data.draw}`;
+            if (data.search.value) {
+                url += `&search[value]=${data.search.value}`; // Append search query
+            }
 
-                    const responseMessage =
-                        typeof response === "string"
-                            ? JSON.parse(response)
-                            : response;
-
-                    callback({
-                        draw: data.draw,
-                        recordsTotal: responseMessage.pagination.total,
-                        recordsFiltered: responseMessage.pagination.total,
-                        data: responseMessage.data,
-                    });
+            sendRequest("GET", url, null, function (error, response) {
+                if (error) {
+                    console.error("Pagination Error:", error);
+                    return;
                 }
-            );
+
+                const responseMessage =
+                    typeof response === "string"
+                        ? JSON.parse(response)
+                        : response;
+
+                callback({
+                    draw: responseMessage.pagination.draw,
+                    recordsTotal: responseMessage.pagination.total,
+                    recordsFiltered: responseMessage.pagination.total,
+                    data: responseMessage.data,
+                });
+            });
         },
         columns: [
             { data: "name" },
@@ -59,7 +58,6 @@ function GetResponderData() {
         ],
     });
 }
-
 
 function UpdateResponderModal(id, name, username, role) {
     document.getElementById("update-responder-name").value = name;
