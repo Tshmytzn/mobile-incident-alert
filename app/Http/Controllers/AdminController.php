@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\AppUser;
+use App\Models\Responder;
 
 class AdminController extends Controller
 {
@@ -51,7 +52,7 @@ class AdminController extends Controller
     public function GetUser()
     {
         $data = AppUser::all();
-        return response()->json(['message' => 'User Added Successfully','data'=>$data, 'status' => true]);
+        return response()->json(['message' => '','data'=>$data, 'status' => true]);
     }
 
     public function UpdateUser(Request $request)
@@ -75,5 +76,51 @@ class AdminController extends Controller
         $user->save();
 
         return response()->json(['message' => 'User Updated Successfully', 'status' => true]);
+    }
+
+    public function AddResponder(Request $request)
+    {
+        $check =  Responder::where('username', $request->username)->first();
+        if (!empty($check)) {
+            return response()->json(['message' => 'Username Already Exist', 'status' => false]);
+        }
+
+        $data = new Responder();
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->password = $request->password;
+        $data->type = ucfirst($request->role);
+        $data->save();
+
+        return response()->json(['message' => 'Responder Added Successfully', 'status' => true]);
+    }
+
+    public function GetResponder()
+    {
+        $data = Responder::all();
+        return response()->json(['message' => '', 'data' => $data, 'status' => true]);
+    }
+
+    public function UpdateResponder(Request $request)
+    {
+        $checkCurrentUser = Responder::where('username', $request->username)
+            ->where('id', $request->responderid)
+            ->first();
+        if (!$checkCurrentUser) {
+            $check = Responder::where('username', $request->username)->first();
+            if (!empty($check)) {
+                return response()->json(['message' => 'Username Already Exist', 'status' => false]);
+            }
+        }
+        $user = Responder::where('id', $request->responderid)->first();
+        $user->name = $request->name;
+        $user->username = $request->username;
+        if (!empty($request->password)) {
+            $user->password = $request->password;
+        }
+        $user->type = ucfirst($request->role);
+        $user->save();
+
+        return response()->json(['message' => 'Responder Updated Successfully', 'status' => true]);
     }
 }
