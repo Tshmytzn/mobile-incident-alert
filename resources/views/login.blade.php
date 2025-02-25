@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -24,7 +25,15 @@
     </style>
 </head>
 
-<body class=" d-flex flex-column">
+<body class="d-flex flex-column"
+    style="
+    background-image: url('./static/lasalle_campus.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh; 
+    width: 100vw;
+">
     <script src="./dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page page-center">
         <div class="container container-tight py-4">
@@ -32,8 +41,9 @@
             <div class="card card-md ">
                 <div class="text-center mb-4">
                     <a href="#" class="navbar-brand navbar-brand-autodark mt-5">
-                        <img src="./static/lasalle_logo.png" style="width: 210px; height: 70px;" alt="Tabler" class="navbar-brand-image">
-    
+                        <img src="./static/lasalle_logo.png" style="width: 210px; height: 70px;" alt="Tabler"
+                            class="navbar-brand-image">
+
                     </a>
                 </div>
                 <div class="card-body">
@@ -63,4 +73,5 @@
     </div>
     @include('Administrator.components.scripts')
 </body>
+
 </html>
