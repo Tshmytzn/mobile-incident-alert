@@ -57,9 +57,11 @@
                         <div class="form-footer">
                             @include("Administrator.components.button",
                                 [
+                                'buttonWidth'=>'w-100',
                                 'buttonLabel'=>'Sign in',
                                 'buttonID'=>"login-button",
                                 'buttonSpan'=>'button-span',
+                                'buttonModal'=>'none',
                                 'buttonFunction'=>'AdminLogin',
                                 'buttonFormID'=>'admin_login_form',
                                 'buttonUrl'=>'/admin-login'

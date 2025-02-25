@@ -40,16 +40,18 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 @include(
-    "Administrator.components.button",
-    [
-        'buttonLabel' => 'Save',
-        'buttonID' => "add-user-button",
-        'buttonSpan' => 'add-user-span',
-        'buttonFunction' => 'PostRequest',
-        'buttonFormID' => 'add-user-form',
-        'buttonUrl' => '/add-user'
-    ]
-)
+                    "Administrator.components.button",
+                    [
+                        'buttonWidth' => '',
+                        'buttonLabel' => 'Save',
+                        'buttonID' => "add-user-button",
+                        'buttonSpan' => 'add-user-span',
+                        'buttonModal' => 'adduser',
+                        'buttonFunction' => 'AddUser',
+                        'buttonFormID' => 'add-user-form',
+                        'buttonUrl' => '/add-user'
+                    ]
+                )
             </div>
         </div>
     </div>
@@ -98,16 +100,18 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 @include(
-    "Administrator.components.button",
-    [
-        'buttonLabel' => 'Save',
-        'buttonID' => "add-user-button",
-        'buttonSpan' => 'add-user-span',
-        'buttonFunction' => 'PostRequest',
-        'buttonFormID' => 'add-user-form',
-        'buttonUrl' => '/add-user'
-    ]
-)
+                    "Administrator.components.button",
+                    [
+                        'buttonWidth' => 'w-100',
+                        'buttonLabel' => 'Save',
+                        'buttonID' => "add-user-button",
+                        'buttonSpan' => 'add-user-span',
+                        'buttonModal' => 'none',
+                        'buttonFunction' => 'PostRequest',
+                        'buttonFormID' => 'add-user-form',
+                        'buttonUrl' => '/add-user'
+                    ]
+                )
             </div>
         </div>
     </div>

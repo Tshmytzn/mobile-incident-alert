@@ -1,10 +1,22 @@
-function GetUserData(){
+function GetUserData() {
     sendRequest("GET", "/get-user", null, function (error, response) {
-        const responseMessage = JSON.parse(response);
+        const responseMessage =
+            typeof response === "string" ? JSON.parse(response) : response;
+
         if (!responseMessage.status) {
             console.error("GET Error:", error, response);
         } else {
             console.log(responseMessage.data);
+
+            // Destroy existing DataTable if it exists
+            if ($.fn.DataTable.isDataTable("#userTable")) {
+                $("#userTable").DataTable().destroy();
+            }
+
+            // Clear the table body to avoid duplicated data
+            $("#userTable tbody").empty();
+
+            // Reinitialize DataTable with new data
             $("#userTable").DataTable({
                 processing: true,
                 data: responseMessage.data, // Set data directly
@@ -27,13 +39,18 @@ function GetUserData(){
     });
 }
 
-function UpdateUserModal(id,name,email,role)
-{
-    document.getElementById('update-user-name').value = name;
-    document.getElementById('update-user-email').value = email;
-    document.getElementById("update-user-role").value = 'role';
+function UpdateUserModal(id, name, email, role) {
+    document.getElementById("update-user-name").value = name;
+    document.getElementById("update-user-email").value = email;
+    document.getElementById("update-user-role").value = "role";
 }
 
+async function AddUser(formID, buttonID, buttonSpan, Url, Modal) {
+    const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
+    if (status) {
+        GetUserData();
+    }
+}
 
 $(document).ready(function () {
     GetUserData();

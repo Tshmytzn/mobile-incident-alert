@@ -33,6 +33,11 @@ class AdminController extends Controller
 
     public function AddUser(Request $request)
     {
+        $check =  AppUser::where('email',$request->email)->first();
+        if(!empty($check)){
+            return response()->json(['message' => 'Email Already Exist', 'status' => false]);
+        }
+
         $data = new AppUser();
         $data->name = $request->name;
         $data->email =$request->email;
