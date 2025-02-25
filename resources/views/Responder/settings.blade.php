@@ -2,14 +2,14 @@
 
 <html lang="en">
 
-@include('Administrator.components.head')
+@include('Responder.components.head')
 
 <body>
     <script src="./dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page">
 
-        @include('Administrator.components.aside')
-        @include('Administrator.components.header')
+        @include('Responder.components.aside')
+        @include('Responder.components.header')
 
         <div class="page-wrapper">
             <!-- Page header -->
@@ -93,13 +93,13 @@
                         </div>
                     </div>
                 </div>
-                @include('Administrator.components.modals')
+                @include('Responder.components.modals')
 
-                @include('Administrator.components.footer')
+                @include('Responder.components.footer')
             </div>
 
         </div>
-        @include('Administrator.components.scripts')
+        @include('Responder.components.scripts')
 
 </body>
 
