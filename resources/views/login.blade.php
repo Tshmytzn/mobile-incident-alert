@@ -48,10 +48,11 @@
                 </div>
                 <div class="card-body">
                     <h2 class="h2 text-center mb-4">Login to your account</h2>
-                    <form action="./" method="get" autocomplete="off" novalidate>
+                    <form id="user-login-form" method="POST" autocomplete="off" novalidate>
+                        @csrf
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
-                            <input type="email" class="form-control" placeholder="your@email.com" autocomplete="off">
+                            <input type="email" name="email" class="form-control" placeholder="your@email.com" autocomplete="off">
                         </div>
                         <div class="mb-2">
                             <label class="form-label">
@@ -59,19 +60,29 @@
 
                             </label>
                             <div class="input-group input-group-flat">
-                                <input type="password" class="form-control" placeholder="Your password"
+                                <input type="password" name="password" class="form-control" placeholder="Your password"
                                     autocomplete="off">
                             </div>
                         </div>
                         <div class="form-footer">
-                            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                            @include('Administrator.components.button', [
+                                'buttonWidth' => 'w-100',
+                                'buttonLabel' => 'Sign in',
+                                'buttonID' => 'login-button',
+                                'buttonSpan' => 'button-span',
+                                'buttonModal' => 'none',
+                                'buttonFunction' => 'UserLogin',
+                                'buttonFormID' => 'user-login-form',
+                                'buttonUrl' => '/user-login',
+                            ])
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    @include('Administrator.components.scripts')
+    @include('Users.components.scripts')
+    <script src="{{ asset('js/user/UserLogin.js') }}"></script>
 </body>
 
 </html>

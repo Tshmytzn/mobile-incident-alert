@@ -8,16 +8,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\AppUser;
 use App\Models\Responder;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
     public function login(Request $request)
     {
         // Validate input
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => 'User credential is required', 'errors' => $validator->errors()], 422);
+        }
 
         // Find admin by email
         $admin = Admin::where('email', $request->email)->first();

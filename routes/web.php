@@ -2,12 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminAuth;
-
-require __DIR__ . '/adminroute.php';
-
+use App\Http\Middleware\CheckUserSession;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 //User's Routes  
@@ -17,26 +15,30 @@ Route::get('/login', function () {
     return view('login');
 });
 
-// Users Reports
-Route::get('/alertdashboard', function () {
-    return view('Users.alertdashboard');
-});
+Route::middleware([CheckUserSession::class])->group(function () {
+
+    require __DIR__ . '/userroute.php';
 
 // Users Reports
-Route::get('/usersreports', function () {
-    return view('Users.myreports');
-});
+    Route::get('/alertdashboard', function () {
+        return view('Users.alertdashboard');
+    });
 
-// Notification
-Route::get('/notification', function () {
-    return view('Users.notification');
-});
+    // Users Reports
+    Route::get('/usersreports', function () {
+        return view('Users.myreports');
+    });
 
-// Profile Settings
-Route::get('/profilesettings', function () {
-    return view('Users.profilesettings');
-});
+    // Notification
+    Route::get('/notification', function () {
+        return view('Users.notification');
+    });
 
+    // Profile Settings
+    Route::get('/profilesettings', function () {
+        return view('Users.profilesettings');
+    });
+});
 
 
 // Login
@@ -46,6 +48,9 @@ Route::get('/administrator', function () {
 
 //Administrator Routes
 Route::middleware([AdminAuth::class])->group(function () {
+
+    require __DIR__ . '/adminroute.php';
+
     // Dashboard
     Route::get('/dashboard', function () {
         return view('Administrator.dashboard');

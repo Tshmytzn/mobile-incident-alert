@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminAuth
+class CheckUserSession
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,12 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->is('admin-login')) {
+        if ($request->is('user-login')) {
             return $next($request);
         }
-        // Check if admin session exists
-        if (!Session::has('admin_id')) {
-            return redirect('/administrator')->with('error', 'You must log in first.');
+
+        if (!Session::has('user_id')) {
+            return redirect('/login')->with('error', 'You must log in first.');
         }
 
         return $next($request);

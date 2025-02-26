@@ -28,3 +28,5 @@
         }
     });
 </script>
+
+<script src="{{ asset('js/RequestScript.js') }}"></script>
