@@ -91,12 +91,15 @@ function PostRequest(formID, buttonID, buttonSpan, Url, Modal) {
 }
 
 function GetRequest(Url) {
-    sendRequest("GET", Url, null, function (error, response) {
-        if (error) {
-            console.error("GET Error:", error, response);
-        } else {
-            console.log("GET Success:", response);
-        }
+    return new Promise((resolve, reject) => {
+        sendRequest("GET", Url, null, function (error, response) {
+            if (error) {
+                console.error("GET Error:", error, response);
+                reject(error);
+            } else {
+                resolve(response);
+            }
+        });
     });
 }
 
@@ -147,4 +150,8 @@ function LogoutRequest(formID, buttonID, buttonSpan, Url) {
             });
         }
     });
+}
+
+function SetValue(id,val){
+    document.getElementById(id).value = val;
 }

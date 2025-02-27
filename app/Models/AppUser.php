@@ -19,6 +19,7 @@ class AppUser extends Model
         'phone_number',
         'role',
         'address',
+        'picture',
         'emergency_contact_name',
         'emergency_contact_number',
         ];

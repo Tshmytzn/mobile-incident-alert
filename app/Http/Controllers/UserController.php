@@ -42,4 +42,37 @@ class UserController extends Controller
         return response()->json(['message' => 'Logout successful','route'=>'/login', 'status' => true]);
     }
 
+    public function GetProfile()
+    {
+        $user_id = Session::get('user_id');
+        $data = AppUser::find($user_id);
+        return response()->json(['message' => 'Profile retrieved successfully', 'data' => $data, 'status'=>true]);
+    }
+
+    public function UpdateProfilePicture(Request $request)
+    {
+        $user_id = Session::get('user_id');
+        $data = AppUser::find($user_id);
+        $oldPicture = $data->picture;
+        if(!empty($oldPicture)){
+            $this->deletePicture('/StudentPicture', $oldPicture);
+        }
+        $picture = $this->uploadPicture($request->picture, '/StudentPicture');
+        $data->picture = $picture['filename'];
+        $data->save();
+        return response()->json(['message' => 'Profile picture updated successfully', 'status'=>true]);
+    }
+
+    public function UpdateProfile(Request $request)
+    {
+        $user_id = Session::get('user_id');
+        $data = AppUser::find($user_id);
+        $data->name = $request['profile-name'];
+        $data->email = $request['profile-email'];
+        $data->phone_number = $request['profile-number'];
+        $data->address = $request['profile-address'];
+        $data->save();
+        return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
+    }
+
 }
