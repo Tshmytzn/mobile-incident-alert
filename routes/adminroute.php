@@ -5,8 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
 Route::post('/admin-login', action: [AdminController::class, 'login']);
+
 Route::post('/admin-logout', action: [AdminController::class, 'logout']);
 
+Route::post('/admin-picture-update', action: [AdminController::class, 'UpdateAdminPicture']);
+
+Route::post('/update-admin', action: [AdminController::class, 'UpdateAdmin']);
+
+Route::get('/get-admin', action: [AdminController::class, 'GetAdminProfile']);
 
 Route::post('/add-user', action: [AdminController::class, 'AddUser']);
 

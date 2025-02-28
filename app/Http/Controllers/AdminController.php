@@ -197,4 +197,25 @@ class AdminController extends Controller
         return response()->json(['message' => 'Logout successful','route'=>'/administrator', 'status' => true]);
     }
 
+    public function GetAdminProfile(){
+        $admin = Session::get('admin_id');
+        $data = Admin::find($admin);
+        return response()->json(['message' => 'Profile Fetched!', 'data'=> $data, 'status' => true]);
+
+    }
+
+    public function UpdateAdminPicture(Request $request)
+    {
+        $admin_id = Session::get('admin_id');
+        $data = Admin::find($admin_id);
+        $oldPicture = $data->picture;
+        if(!empty($oldPicture)){
+            $this->deletePicture('/AdminPicture', $oldPicture);
+        }
+        $picture = $this->uploadPicture($request->picture, '/AdminPicture');
+        $data->picture = $picture['filename'];
+        $data->save();
+        return response()->json(['message' => 'Profile picture updated successfully', 'status'=>true]);
+    }
+
 }
