@@ -12,6 +12,8 @@ Route::post('/admin-picture-update', action: [AdminController::class, 'UpdateAdm
 
 Route::post('/admin-profile-update', action: [AdminController::class, 'UpdateAdminProfile']);
 
+Route::post('/admin-password-update', action: [AdminController::class, 'UpdateAdminPassword']);
+
 Route::post('/update-admin', action: [AdminController::class, 'UpdateAdmin']);
 
 Route::get('/get-admin', action: [AdminController::class, 'GetAdminProfile']);

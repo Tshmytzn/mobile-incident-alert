@@ -65,17 +65,17 @@
                                                     name="admin_email" required placeholder="admin@mail.com">
                                             </div>
                                         </fieldset>
+                                    </form>
 
-                                        <!-- Password Section -->
-                                        <fieldset class="border rounded p-3 mb-4">
-                                            <legend class="float-none w-auto px-2">Security</legend>
-                                            <p class="text-muted">Set a permanent password if you don't want to use
-                                                temporary login codes.</p>
-                                            <button data-bs-toggle="modal" data-bs-target="#newpass"
-                                                class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set
-                                                New
-                                                Password</button>
-                                        </fieldset>
+                                    <!-- Password Section -->
+                                    <fieldset class="border rounded p-3 mb-4">
+                                        <legend class="float-none w-auto px-2">Security</legend>
+                                        <p class="text-muted">Set a permanent password.</p>
+                                        <button data-bs-toggle="modal" data-bs-target="#newPassModal"
+                                            class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set
+                                            New
+                                            Password</button>
+                                    </fieldset>
                                 </div>
 
                                 <!-- Save Changes Button -->
@@ -91,7 +91,6 @@
                                         'buttonUrl' => '/admin-profile-update',
                                     ])
                                 </div>
-                                </form>
                             </div>
                         </div>
                     </div>

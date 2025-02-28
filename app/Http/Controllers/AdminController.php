@@ -228,4 +228,23 @@ class AdminController extends Controller
         return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
     }
 
+    public function UpdateAdminPassword(Request $request)
+    {
+        $admin_id = Session::get('admin_id');
+        $admin = Admin::find($admin_id);
+        
+        if (!$admin) {
+            return response()->json(['message' => 'Admin not found', 'status' => false], 404);
+        }
+    
+        if (!Hash::check($request->admin_old_password, $admin->password)) {
+            return response()->json(['message' => 'Old password is incorrect', 'status' => false], 400);
+        }
+    
+        $admin->password = $request->admin_new_password;
+        $admin->save();
+
+        return response()->json(['message' => 'Password updated successfully', 'status' => true]);
+    }
+
 }

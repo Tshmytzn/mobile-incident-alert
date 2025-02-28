@@ -22,6 +22,13 @@ async function UpdateAdminProfile(formID, buttonID, buttonSpan, Url, Modal) {
     }
 }
 
+async function UpdateAdminPassword(formID, buttonID, buttonSpan, Url, Modal) {
+    const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
+    if (status) {
+        GetAdminProfile();
+    }
+}
+
 async function UpdateAdminPicture(formID, buttonID, buttonSpan, Url, Modal) {
     const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
     if (status) {
