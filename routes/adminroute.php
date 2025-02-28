@@ -10,6 +10,8 @@ Route::post('/admin-logout', action: [AdminController::class, 'logout']);
 
 Route::post('/admin-picture-update', action: [AdminController::class, 'UpdateAdminPicture']);
 
+Route::post('/admin-profile-update', action: [AdminController::class, 'UpdateAdminProfile']);
+
 Route::post('/update-admin', action: [AdminController::class, 'UpdateAdmin']);
 
 Route::get('/get-admin', action: [AdminController::class, 'GetAdminProfile']);

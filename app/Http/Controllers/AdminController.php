@@ -218,4 +218,14 @@ class AdminController extends Controller
         return response()->json(['message' => 'Profile picture updated successfully', 'status'=>true]);
     }
 
+    public function UpdateAdminProfile(Request $request)
+    {
+        $admin_id = Session::get('admin_id');
+        $data = Admin::find($admin_id);
+        $data->name = $request['admin_name'];
+        $data->email = $request['admin_email'];
+        $data->save();
+        return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
+    }
+
 }

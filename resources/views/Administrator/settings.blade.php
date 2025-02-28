@@ -41,38 +41,41 @@
                                 <div class="card-body p-4">
                                     <!-- Avatar Section -->
                                     <div class="text-center mb-4">
-                                        <img class="rounded-circle border" id="profilePicPreview"
-                                            width="100" height="100" alt="User Avatar">
+                                        <img class="rounded-circle border" id="profilePicPreview" width="100"
+                                            height="100" alt="User Avatar">
                                         <div class="mt-2">
-                                            <button data-bs-target="#uploadProfilePic" data-bs-toggle="modal" 
+                                            <button data-bs-target="#uploadProfilePic" data-bs-toggle="modal"
                                                 class="btn btn-outline-primary btn-sm"><i class="bi bi-image me-2"></i>
                                                 Change profile</button>
                                         </div>
                                     </div>
                                     <form id="admin-profile-form" method="POST">
+                                        @csrf
                                         <!-- User Information -->
-                                    <fieldset class="border rounded p-3 mb-4">
-                                        <legend class="float-none w-auto px-2">Admin Information</legend>
-                                        <div class="mb-3">
-                                            <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" id="admin_name" required placeholder="Zalia Redoblo">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Email Address</label>
-                                            <input type="email" class="form-control"id="admin_email" required placeholder="admin@mail.com"
-                                                >
-                                        </div>
-                                    </fieldset>
+                                        <fieldset class="border rounded p-3 mb-4">
+                                            <legend class="float-none w-auto px-2">Admin Information</legend>
+                                            <div class="mb-3">
+                                                <label class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" id="admin_name"
+                                                    name="admin_name" required placeholder="Zalia Redoblo">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email Address</label>
+                                                <input type="email" class="form-control"id="admin_email"
+                                                    name="admin_email" required placeholder="admin@mail.com">
+                                            </div>
+                                        </fieldset>
 
-                                    <!-- Password Section -->
-                                    <fieldset class="border rounded p-3 mb-4">
-                                        <legend class="float-none w-auto px-2">Security</legend>
-                                        <p class="text-muted">Set a permanent password if you don't want to use
-                                            temporary login codes.</p>
-                                        <button data-bs-toggle="modal" data-bs-target="#newpass"
-                                            class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set New
-                                            Password</button>
-                                    </fieldset>
+                                        <!-- Password Section -->
+                                        <fieldset class="border rounded p-3 mb-4">
+                                            <legend class="float-none w-auto px-2">Security</legend>
+                                            <p class="text-muted">Set a permanent password if you don't want to use
+                                                temporary login codes.</p>
+                                            <button data-bs-toggle="modal" data-bs-target="#newpass"
+                                                class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set
+                                                New
+                                                Password</button>
+                                        </fieldset>
                                 </div>
 
                                 <!-- Save Changes Button -->
@@ -84,11 +87,11 @@
                                         'buttonSpan' => 'update-admin-button-span',
                                         'buttonModal' => '',
                                         'buttonFunction' => 'UpdateAdminProfile',
-                                        'buttonFormID' => 'update-admin-form',
+                                        'buttonFormID' => 'admin-profile-form',
                                         'buttonUrl' => '/admin-profile-update',
                                     ])
                                 </div>
-                            </form>
+                                </form>
                             </div>
                         </div>
                     </div>
