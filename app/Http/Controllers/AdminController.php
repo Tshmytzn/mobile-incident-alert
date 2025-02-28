@@ -190,4 +190,11 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Responder Updated Successfully', 'status' => true]);
     }
+
+    public function logout(Request $request)
+    {
+        Session::forget('admin_id');
+        return response()->json(['message' => 'Logout successful','route'=>'/administrator', 'status' => true]);
+    }
+
 }

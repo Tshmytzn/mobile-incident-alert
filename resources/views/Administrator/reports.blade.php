@@ -51,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            @include('Administrator.components.modals')
             @include('Administrator.components.footer')
         </div>
     </div>

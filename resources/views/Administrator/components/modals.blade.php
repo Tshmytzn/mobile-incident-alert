@@ -365,9 +365,19 @@
                             </button>
                         </div>
                         <div class="col">
-                            <a href="logout.php" class="btn btn-danger w-100">
-                                Logout
-                            </a>
+                            <form id="admin-logout-form" method="POST">
+                                @csrf
+                                @include('Administrator.components.button', [
+                                    'buttonWidth' => 'btn-danger w-100',
+                                    'buttonLabel' => 'Logout',
+                                    'buttonID' => 'logout-button',
+                                    'buttonSpan' => 'button-span',
+                                    'buttonModal' => 'none',
+                                    'buttonFunction' => 'LogoutRequest',
+                                    'buttonFormID' => 'admin-logout-form',
+                                    'buttonUrl' => '/admin-logout',
+                                ])
+                            </form>
                         </div>
                     </div>
                 </div>

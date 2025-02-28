@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
 Route::post('/admin-login', action: [AdminController::class, 'login']);
+Route::post('/admin-logout', action: [AdminController::class, 'logout']);
+
 
 Route::post('/add-user', action: [AdminController::class, 'AddUser']);
 
