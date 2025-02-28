@@ -60,63 +60,64 @@
                                             <!-- Profile Picture -->
                                             <div class="d-flex align-items-center mb-4">
                                                 <img id="profilePicPreview" class="rounded-circle shadow-sm border"
-                                                    src="./static/avatars/000m.jpg" width="80" height="80"
+                                                    src="" width="80" height="80"
                                                     alt="Profile">
                                                 <div class="col-auto"><a data-bs-target="#uploadProfilePic"
                                                         data-bs-toggle="modal"
                                                         class="btn btn-outline-primary ms-3 ">Change
                                                         avatar</a></div>
                                             </div>
-
+                                            <form id="update-profile-form" method="POST">
+                                                @csrf
+                                            
                                             <!-- User Information -->
                                             <h4 class="text-muted">User Information</h4>
                                             <div class="row g-3">
                                                 <div class="col-md-6">
                                                     <label class="form-label">Name</label>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Enter your name">
+                                                    <input type="text" class="form-control" name="profile-name" id="profile-name"
+                                                        placeholder="Enter your name" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control"
-                                                        placeholder="name@mail.com">
+                                                    <input type="email" class="form-control" name="profile-email" id="profile-email"
+                                                        placeholder="name@mail.com" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="+63 912 345 6789">
+                                                    <input type="number" class="form-control"
+                                                        placeholder="+63 912 345 6789" name="profile-number" id="profile-number">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Address</label>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Enter your address">
+                                                        placeholder="Enter your address" name="profile-address" id="profile-address">
                                                 </div>
                                             </div>
 
                                             <!-- Password Section -->
                                             <h4 class="mt-4 text-muted">Password</h4>
                                             <p class="small text-muted">You can set a new password for your account.</p>
-                                            <button class="btn btn-outline-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                                 data-bs-target="#newpass">
                                                 <i class="bi bi-lock-fill me-2"></i> Set New Password
                                             </button>
 
                                             <!-- Save Changes Button -->
                                             <div class="card-footer mt-2 bg-light text-end">
-                                                <button class="btn btn-primary"> <svg xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path
-                                                            d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                                                        <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                                        <path d="M14 4l0 4l-6 0l0 -4" />
-                                                    </svg> Save Changes</button>
+                                                @include('Administrator.components.button', [
+                                                    'buttonWidth' => '',
+                                                    'buttonLabel' => 'Save',
+                                                    'buttonID' => 'update-profile-button',
+                                                    'buttonSpan' => 'update-profile-button-span',
+                                                    'buttonModal' => '',
+                                                    'buttonFunction' => 'UpdateProfile',
+                                                    'buttonFormID' => 'update-profile-form',
+                                                    'buttonUrl' => '/user-profile-update',
+                                                ])
                                             </div>
                                         </div>
-
+                                        </form>
                                         <!-- Emergency Contacts Tab -->
                                         <div class="tab-pane fade" id="usercontacts">
                                             <h2 class="mb-3">Emergency Contacts</h2>
@@ -124,12 +125,12 @@
                                                 <div class="col-md-6">
                                                     <label class="form-label">Contact Name</label>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Emergency contact name">
+                                                        placeholder="Emergency contact name" name="profile-contact-name" id="profile-contact-name">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Contact Phone</label>
                                                     <input type="text" class="form-control"
-                                                        placeholder="+63 912 345 6789">
+                                                        placeholder="+63 912 345 6789" name="profile-contact-number" id="profile-contact-number">
                                                 </div>
                                             </div>
                                             <button class="btn btn-primary mt-3">
@@ -150,6 +151,7 @@
         </div>
     </div>
     @include('Users.components.scripts')
+    <script src="{{ asset('js/user/UserProfile.js') }}"></script>
 
 </body>
 

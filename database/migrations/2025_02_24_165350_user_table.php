@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->enum('role', ['Student', 'Faculty', 'Staff']);
             $table->string('phone_number', 20)->nullable();
             $table->string('address')->nullable();
+            $table->string('picture')->nullable();
             $table->string('emergency_contact_name')->nullable();
             $table->string('emergency_contact_phone', 20)->nullable();
             $table->timestamps();
