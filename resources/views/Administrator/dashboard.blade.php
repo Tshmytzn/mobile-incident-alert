@@ -172,7 +172,7 @@
                                 <h3 class="card-title">La Salle Bacolod Campus Map</h3>
                             </div>
                             <div class="card-body">
-                                <div id="map" style="height: 400px;"></div>
+                                <div id="map" style="height: 540px;"></div>
                             </div>
                         </div>
                     </div>
