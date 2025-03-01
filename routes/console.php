@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Console\Scheduling\Schedule;
+use App\Jobs\ProcessAlert;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+app()->resolving(Schedule::class, function (Schedule $schedule) {
+    $schedule->call(function () {
+        for ($i = 0; $i < 6; $i++) { // Dispatch 6 times per minute
+            ProcessAlert::dispatch()->delay($i * 10); // Run every 10 seconds
+        }
+    })->everyMinute();
+});
