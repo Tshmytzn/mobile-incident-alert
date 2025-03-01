@@ -137,3 +137,24 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="swipe" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="responderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+
+            <div id="swipe-body">
+                <div class="swipe-container">
+                    <div class="swipe-button" id="swipeBtn">↔</div>
+                    <div class="swipe-text" disabled>
+                        <span>Left to Cancel</span>
+                        <span>Right to Alert</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

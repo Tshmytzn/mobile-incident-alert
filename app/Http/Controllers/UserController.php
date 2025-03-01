@@ -75,4 +75,14 @@ class UserController extends Controller
         return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
     }
 
+    public function UpdateContact(Request $request)
+    {
+        $user_id = Session::get('user_id');
+        $data = AppUser::find($user_id);
+        $data->emergency_contact_name = $request['profile-contact-name'];
+        $data->emergency_contact_phone = $request['profile-contact-number'];
+        $data->save();
+        return response()->json(['message' => 'Profile updated successfully', 'status' => true]);
+    }
+
 }

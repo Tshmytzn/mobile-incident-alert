@@ -106,21 +106,23 @@
                                             <!-- Save Changes Button -->
                                             <div class="card-footer mt-2 bg-light text-end">
                                                 @include('Administrator.components.button', [
-                                                    'buttonWidth' => '',
-                                                    'buttonLabel' => 'Save',
-                                                    'buttonID' => 'update-profile-button',
-                                                    'buttonSpan' => 'update-profile-button-span',
-                                                    'buttonModal' => '',
-                                                    'buttonFunction' => 'UpdateProfile',
-                                                    'buttonFormID' => 'update-profile-form',
-                                                    'buttonUrl' => '/user-profile-update',
-                                                ])
+    'buttonWidth' => '',
+    'buttonLabel' => 'Save',
+    'buttonID' => 'update-profile-button',
+    'buttonSpan' => 'update-profile-button-span',
+    'buttonModal' => '',
+    'buttonFunction' => 'UpdateProfile',
+    'buttonFormID' => 'update-profile-form',
+    'buttonUrl' => '/user-profile-update',
+])
                                             </div>
                                         </div>
                                         </form>
                                         <!-- Emergency Contacts Tab -->
                                         <div class="tab-pane fade" id="usercontacts">
                                             <h2 class="mb-3">Emergency Contacts</h2>
+                                            <form id="contact-form" method="post">
+                                                    @csrf
                                             <div class="row g-3">
                                                 <div class="col-md-6">
                                                     <label class="form-label">Contact Name</label>
@@ -133,9 +135,21 @@
                                                         placeholder="+63 912 345 6789" name="profile-contact-number" id="profile-contact-number">
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary mt-3">
-                                                <i class="bi bi-check-circle me-2"></i> Save Contact
-                                            </button>
+                                            <div class="mt-2 float-end">
+                                                @include('Administrator.components.button', [
+                                                'buttonWidth' => '',
+                                                'buttonLabel' => 'Save',
+                                                'buttonID' => 'update-contact-button',
+                                                'buttonSpan' => 'update-contact-button-span',
+                                                'buttonModal' => '',
+                                                'buttonFunction' => 'UpdateProfile',
+                                                'buttonFormID' => 'contact-form',
+                                                'buttonUrl' => '/user-contact-update',
+                                            ])
+                                            </div>
+                                            
+                                            </form>
+                                            
                                         </div>
                                     </div>
                                 </div> <!-- End of Main Content -->
