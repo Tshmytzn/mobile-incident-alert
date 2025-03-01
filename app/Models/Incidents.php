@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Incidents extends Model
 {
     use HasFactory;
-
+    protected $table = 'incidents';
     protected $fillable = [
         'user_id',
         'type',
@@ -18,14 +18,4 @@ class Incidents extends Model
         'status',
         'reported_at'
     ];
-
-    protected $casts = [
-        'reported_at' => 'datetime',
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo(AppUser::class, 'user_id');
-    }
-
 }

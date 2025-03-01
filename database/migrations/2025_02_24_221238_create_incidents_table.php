@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->enum('type', ['Medical', 'Fire', 'Security', 'Disaster']);
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
-            $table->text('description')->nullable();
+            $table->string('type');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('description')->nullable();
             $table->enum('status', ['Pending', 'In Progress', 'Resolved'])->default('Pending');
-            $table->timestamp('reported_at')->useCurrent();
+            $table->string('reported_at');
             $table->timestamps();
         });
     }
