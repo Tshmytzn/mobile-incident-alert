@@ -45,7 +45,7 @@ Route::middleware([CheckUserSession::class])->group(function () {
 
 // Login
 Route::get('/administrator', function () {
-    return view('adminlogin');
+    return view('Adminlogin');
 });
 
 //Administrator Routes
