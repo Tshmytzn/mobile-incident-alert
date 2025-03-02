@@ -44,9 +44,9 @@
                                         <img src="./static/avatars/000m.jpg" class="rounded-circle border"
                                             width="100" height="100" alt="User Avatar">
                                         <div class="mt-2">
-                                            <button type="button" data-bs-target="#uploadProfilePic" data-bs-toggle="modal"
+                                            {{-- <button type="button" data-bs-target="#uploadProfilePic" data-bs-toggle="modal"
                                                 class="btn btn-outline-primary btn-sm"><i class="bi bi-image me-2"></i>
-                                                Change profile</button>
+                                                Change profile</button> --}}
                                         </div>
                                     </div>
 
