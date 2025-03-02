@@ -85,4 +85,23 @@ class UserController extends Controller
         return response()->json(['message' => 'Profile updated successfully', 'status' => true]);
     }
 
+    public function UpdateUserPassword(Request $request)
+    {
+        $user_id = Session::get('user_id');
+        $user = AppUser::find($user_id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found', 'status' => false], 404);
+        }
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json(['message' => 'Old password is incorrect', 'status' => false], 400);
+        }
+
+        $user->password = $request->new_password;
+        $user->save();
+
+        return response()->json(['message' => 'Password updated successfully', 'status' => true]);
+    }
+
 }

@@ -34,6 +34,13 @@ async function UpdatePicture(formID, buttonID, buttonSpan, Url, Modal) {
     }
 }
 
+async function UpdateUserPassword(formID, buttonID, buttonSpan, Url, Modal) {
+    const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
+    if (status) {
+        GetProfile();
+    }
+}
+
 $(document).ready(function () {
     GetProfile();
 });

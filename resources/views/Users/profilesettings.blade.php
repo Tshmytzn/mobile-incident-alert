@@ -69,7 +69,7 @@
                                             </div>
                                             <form id="update-profile-form" method="POST">
                                                 @csrf
-                                            
+
                                             <!-- User Information -->
                                             <h4 class="text-muted">User Information</h4>
                                             <div class="row g-3">
@@ -99,7 +99,7 @@
                                             <h4 class="mt-4 text-muted">Password</h4>
                                             <p class="small text-muted">You can set a new password for your account.</p>
                                             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                                data-bs-target="#newpass">
+                                                data-bs-target="#Userpassmodal">
                                                 <i class="bi bi-lock-fill me-2"></i> Set New Password
                                             </button>
 
@@ -147,9 +147,9 @@
                                                 'buttonUrl' => '/user-contact-update',
                                             ])
                                             </div>
-                                            
+
                                             </form>
-                                            
+
                                         </div>
                                     </div>
                                 </div> <!-- End of Main Content -->
