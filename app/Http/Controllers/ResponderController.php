@@ -55,7 +55,7 @@ class ResponderController extends Controller
     {
         $responder_id = Session::get('responder_id');
         $data = Responder::find($responder_id);
-        $data->name = $request['fullname'];
+        $data->name = strtoupper($request['fullname']);
         $data->username = $request['username'];
         $data->save();
         return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
@@ -86,7 +86,7 @@ class ResponderController extends Controller
         $query = Incidents::query();
 
         $query->where('status', 'Resolved');
-        
+
         // Search functionality
         if ($request->has('search') && !empty($request->search['value'])) {
             $search = $request->search['value'];
