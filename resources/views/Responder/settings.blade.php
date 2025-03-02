@@ -44,7 +44,7 @@
                                         <img src="./static/avatars/000m.jpg" class="rounded-circle border"
                                             width="100" height="100" alt="User Avatar">
                                         <div class="mt-2">
-                                            <button data-bs-target="#uploadProfilePic" data-bs-toggle="modal"
+                                            <button type="button" data-bs-target="#uploadProfilePic" data-bs-toggle="modal"
                                                 class="btn btn-outline-primary btn-sm"><i class="bi bi-image me-2"></i>
                                                 Change profile</button>
                                         </div>
@@ -68,14 +68,14 @@
                                         </fieldset>
 
                                         <!-- Password Section -->
-                                        <fieldset class="border rounded p-3 mb-4">
+                                        {{-- <fieldset class="border rounded p-3 mb-4">
                                             <legend class="float-none w-auto px-2">Security</legend>
                                             <p class="text-muted">Set a permanent password.</p>
-                                            <button data-bs-toggle="modal" data-bs-target="#responderpassmodal"
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#responderpassmodal"
                                                 class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set
                                                 New
                                                 Password</button>
-                                        </fieldset>
+                                        </fieldset> --}}
                                 </div>
 
                                 <!-- Save Changes Button -->

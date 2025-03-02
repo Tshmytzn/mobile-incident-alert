@@ -28,7 +28,7 @@
     });
 </script>
 
-<script>
+{{-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Initialize the map
         var map = L.map('map', {
@@ -67,4 +67,4 @@
             fillOpacity: 0.3
         }).addTo(map).bindPopup("USLS Campus Area");
     });
-</script>
+</script> --}}

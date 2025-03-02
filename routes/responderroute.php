@@ -15,3 +15,7 @@ Route::Get('/responder-profile', action: [ResponderController::class, 'GetProfil
 Route::post('/responder-password-update', action: [ResponderController::class, 'UpdateresponderPassword']);
 
 Route::post('/responder-profile-update', action: [ResponderController::class, 'UpdateProfile']);
+
+Route::get('/get-alert-for-responder', action: [AlertController::class, 'GetAlertsForResponder']);
+
+Route::post('/confirm-alert-for-responder', action: [AlertController::class, 'ConfirmAlert']);

@@ -29,9 +29,25 @@
                         <!-- Map Section -->
                         <div class="col-12 mt-2">
                             <div class="card-body">
-                                <div id="map" class="mt-2" style="height: 500px;"></div>
+                                <div id="map" style="height: 540px;"></div>
                             </div>
                         </div>
+
+                        <div class="d-flex justify-content-center mt-5" id="user-info">
+                            {{-- <div class="card" style="width: 18rem;">
+                                <div class="card-header">
+                                    Emergency Information
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">John Doe</h5>
+                                    <p class="card-text"><strong>Emergency Type:</strong> Medical</p>
+                                    <p class="card-text"><strong>Phone Number:</strong> +1 (123) 456-7890</p>
+                                    <p class="card-text"><strong>Emergency Contact:</strong> Jane Doe (+1 (098)
+                                        765-4321)</p>
+                                </div>
+                            </div> --}}
+                        </div>
+
 
                     </div>
                 </div>
@@ -49,17 +65,7 @@
         </div>
     </div>
     @include('Responder.components.scripts')
-
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable({
-
-
-            });
-        });
-    </script>
-
-
+    <script src="{{ asset('js/Responder/ResponderIncident.js') }}"></script>
 </body>
 
 </html>
