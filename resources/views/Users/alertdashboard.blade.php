@@ -15,14 +15,14 @@
     }
 
     /* Make modal background more transparent */
-.modal-dialog {
+#modal-dialogs {
     display: flex;
     align-items: center; /* Centers content */
     justify-content: center;
 }
 
 /* Transparent modal with a green border */
-.modal-content {
+#modal-contents {
     background: rgba(0, 0, 0, 0.2); /* Slight transparency */
     border: 2px solid #007A33; /* Green border */
     box-shadow: none;

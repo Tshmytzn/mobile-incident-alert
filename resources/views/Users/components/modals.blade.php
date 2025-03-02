@@ -141,8 +141,8 @@
 
 <div class="modal fade" id="swipe" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="responderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
+    <div class="modal-dialog modal-fullscreen" id="modal-dialogs">
+        <div class="modal-content" id="modal-contents">
 
             <div id="swipe-body">
                 <div class="swipe-container">
