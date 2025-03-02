@@ -50,44 +50,46 @@
                                         </div>
                                     </div>
 
-                                    <!-- User Information -->
-                                    <fieldset class="border rounded p-3 mb-4">
-                                        <legend class="float-none w-auto px-2">Admin Information</legend>
-                                        <div class="mb-3">
-                                            <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" placeholder="Zalia Redoblo">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" placeholder="admin@mail.com"
-                                                disabled>
-                                        </div>
-                                    </fieldset>
+                                    <form id="update-profile-form" method="POST">
+                                        @csrf
+                                        <!-- User Information -->
+                                        <fieldset class="border rounded p-3 mb-4">
+                                            <legend class="float-none w-auto px-2">Responder Information</legend>
+                                            <div class="mb-3">
+                                                <label class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" id="fullname"
+                                                    name="fullname" placeholder="Your Username">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">User Name</label>
+                                                <input type="text" class="form-control" id="username"
+                                                    name="username" placeholder="Your Username">
+                                            </div>
+                                        </fieldset>
 
-                                    <!-- Password Section -->
-                                    <fieldset class="border rounded p-3 mb-4">
-                                        <legend class="float-none w-auto px-2">Security</legend>
-                                        <p class="text-muted">Set a permanent password if you don't want to use
-                                            temporary login codes.</p>
-                                        <button data-bs-toggle="modal" data-bs-target="#newpass"
-                                            class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set New
-                                            Password</button>
-                                    </fieldset>
+                                        <!-- Password Section -->
+                                        <fieldset class="border rounded p-3 mb-4">
+                                            <legend class="float-none w-auto px-2">Security</legend>
+                                            <p class="text-muted">Set a permanent password.</p>
+                                            <button data-bs-toggle="modal" data-bs-target="#newpass"
+                                                class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set
+                                                New
+                                                Password</button>
+                                        </fieldset>
                                 </div>
 
                                 <!-- Save Changes Button -->
                                 <div class="card-footer bg-light text-end">
-                                    <button class="btn btn-primary"> <svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                            <path d="M14 4l0 4l-6 0l0 -4" />
-                                        </svg> Save Changes</button>
+                                    @include('Administrator.components.button', [
+                                        'buttonWidth' => '',
+                                        'buttonLabel' => 'Save Changes',
+                                        'buttonID' => 'update-profile-button',
+                                        'buttonSpan' => 'update-profile-button-span',
+                                        'buttonModal' => '',
+                                        'buttonFunction' => 'UpdateProfile',
+                                        'buttonFormID' => 'update-profile-form',
+                                        'buttonUrl' => '/responder-profile-update',
+                                    ])
                                 </div>
                             </div>
                         </div>
@@ -100,6 +102,7 @@
 
         </div>
         @include('Responder.components.scripts')
+        <script src="{{ asset('js/Responder/ResponderProfile.js') }}"></script>
 
 </body>
 

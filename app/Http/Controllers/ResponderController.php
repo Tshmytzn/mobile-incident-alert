@@ -44,4 +44,20 @@ class ResponderController extends Controller
         return response()->json(['message' => 'Logout successful','route'=>'/responder', 'status' => true]);
     }
 
+    public function GetProfile()
+    {
+        $responder_id = Session::get('responder_id');
+        $data = Responder::find($responder_id);
+        return response()->json(['message' => 'Profile retrieved successfully', 'data' => $data, 'status'=>true]);
+    }
+
+    public function UpdateProfile(Request $request)
+    {
+        $responder_id = Session::get('responder_id');
+        $data = Responder::find($responder_id);
+        $data->name = $request['fullname'];
+        $data->username = $request['username'];
+        $data->save();
+        return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
+    }
 }
