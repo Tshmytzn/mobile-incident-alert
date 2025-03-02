@@ -250,7 +250,7 @@ class AdminController extends Controller
 
     public function AvailableResponder()
     {
-        $responder = Responder::where('status', 1)->get();
+        $responder = Responder::all();
         return response()->json(['message' => 'Responder available', 'data' => $responder,'status',true]);
     }
 

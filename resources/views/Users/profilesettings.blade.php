@@ -83,11 +83,16 @@
                                                             id="profile-email" placeholder="name@mail.com" required>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Phone Number</label>
-                                                        <input type="number" class="form-control"
-                                                            placeholder="+63 912 345 6789" name="profile-number"
-                                                            id="profile-number">
+                                                        <label class="form-label">Contact Phone</label>
+                                                        <input type="tel" class="form-control"
+                                                            placeholder="09123456789" name="profile-number"
+                                                            id="profile-number" required pattern="^09\d{9}$"
+                                                            maxlength="11"
+                                                            title="Phone number must start with 09 and be exactly 11 digits."
+                                                            inputmode="numeric"
+                                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                                     </div>
+
                                                     <div class="col-md-6">
                                                         <label class="form-label">Address</label>
                                                         <input type="text" class="form-control"
@@ -134,10 +139,15 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Contact Phone</label>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="+63 912 345 6789"
-                                                            name="profile-contact-number" id="profile-contact-number">
+                                                        <input type="tel" class="form-control"
+                                                            placeholder="09123456789" name="profile-contact-number"
+                                                            id="profile-contact-number" required pattern="^09\d{9}$"
+                                                            maxlength="11"
+                                                            title="Phone number must start with 09 and be exactly 11 digits."
+                                                            inputmode="numeric"
+                                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                                     </div>
+
                                                 </div>
                                                 <div class="mt-2 float-end">
                                                     @include('Administrator.components.button', [

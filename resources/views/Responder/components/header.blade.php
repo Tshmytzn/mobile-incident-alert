@@ -30,15 +30,34 @@
                     </svg> Light Theme
                 </a>
             </div>
-            
+
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                    @php
+                    // Fetch the responder_id from the session
+                    $responder_id = session('responder_id');
+
+                    // Fetch the user data from the AppUser model using the responder_id
+                    $user = \App\Models\Responder::find($responder_id);
+                @endphp
+
+                @if($user)
+                    @php
+                        // Since there's no picture, set a default image
+                        $profilePicture = asset('static/avatars/000m.jpg');
+                    @endphp
+                    <span class="avatar avatar-sm" style="background-image: url('{{ $profilePicture }}')">
+                    </span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>Admin user</div>
-                        <div class="mt-1 small text-secondary">Administrator</div>
+                        <div>{{ $user->name }}</div>
+                        <div class="mt-1 small text-secondary">Responder</div> <!-- Fixed role to 'Responder' -->
                     </div>
+                @else
+                    <div>User not found.</div>
+                @endif
+
+
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                   <a href="/respondersettings" class="dropdown-item">Settings</a>

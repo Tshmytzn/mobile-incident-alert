@@ -49,7 +49,7 @@
                                 <h3 class="card-title">Last updates</h3>
                             </div>
                             <div class="list-group list-group-flush list-group-hoverable" id="div-not">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -58,17 +58,35 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                    @php
+                    // Fetch the user_id from the session
+                    $userId = session('admin_id');
+
+                    // Fetch the user data from the AppUser model using the user_id
+                    $user = \App\Models\Admin::find($userId);
+                @endphp
+
+                @if($user)
+                    @php
+                        // Check if the user has a picture
+                        $profilePicture = $user->picture ? asset('StudentPicture/' . $user->picture) : asset('static/avatars/000m.jpg');
+                    @endphp
+                    <span class="avatar avatar-sm" style="background-image: url('{{ $profilePicture }}')">
+                    </span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>Admin user</div>
+                        <div>{{ $user->name }}</div>
                         <div class="mt-1 small text-secondary">Administrator</div>
                     </div>
+                @else
+                    <div>User not found.</div>
+                @endif
+
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                   <a href="/settings" class="dropdown-item">Settings</a>
                   <a data-bs-target="#logoutModal" data-bs-toggle="modal" class="dropdown-item text-danger">Logout</a>
               </div>
-              
+
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
