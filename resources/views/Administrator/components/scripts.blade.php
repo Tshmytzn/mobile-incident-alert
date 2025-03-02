@@ -76,10 +76,6 @@ function stopMusic() {
     }
 }
 
-// Listen for the first click event on the page to trigger the audio
-window.addEventListener('click', function() {
-    playMusic();
-});
 
 // Set up the Echo listener after a delay
 setTimeout(() => {

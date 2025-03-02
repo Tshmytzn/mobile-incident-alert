@@ -21,6 +21,10 @@ setTimeout(() => {
     window.Echo.channel("alert-channel").listen("GetAlertEvent", (e) => {
         incidentData = e.data.original;
         DisplayData(incidentData);
+        if (incidentData.data && Array.isArray(incidentData.data) && incidentData.data.length > 0) {
+            console.log()
+            DataTable();
+        }
     });
 }, 200);
 
