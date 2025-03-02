@@ -21,3 +21,5 @@ Route::post('/user-contact-update', action: [UserController::class, 'UpdateConta
 Route::post('/user-send-alert', action: [AlertController::class, 'SendAlert']);
 
 Route::post('/user-send-manual-alert', action: [AlertController::class, 'SendManualAlert']);
+
+Route::Get('/user-get-alert', action: [AlertController::class, 'GetAlertsByUser']);

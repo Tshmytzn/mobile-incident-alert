@@ -37,10 +37,9 @@
                             <table id="userTable" class="table table-hover ">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Phone Number</th>
+                                        <th>Type</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -52,14 +51,9 @@
             @include('Users.components.footer')
         </div>
     </div>
+    {{-- @vite('resources/js/app.js') --}}
     @include('Users.components.scripts')
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable({
-
-            });
-        });
-    </script>
+    <script src="{{ asset('js/user/UserReport.js') }}"></script>
 
 </body>
 

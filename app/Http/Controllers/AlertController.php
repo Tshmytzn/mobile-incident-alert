@@ -58,4 +58,39 @@ class AlertController extends Controller
 
         return response()->json(['data' => $data]);
     }
+
+    public function GetAlertsByUser(Request $request)
+    {
+        $query = Incidents::query()->where('user_id', Session::get('user_id'));
+
+        if ($request->has('search') && !empty($request->search['value'])) {
+            $search = $request->search['value'];
+            $query->where(function ($q) use ($search) {
+                $q->where('type', 'like', "%{$search}%")
+                    ->orWhere('status', 'like', "%{$search}%")
+                    ->orWhere('report_at', 'like', "%{$search}%");
+            });
+        }
+
+        // Handle pagination
+        $perPage = $request->input('length', 10); // Number of records per page
+        $start = $request->input('start', 0); // Offset
+        $currentPage = ($start / $perPage) + 1; // Calculate current page
+
+        // Paginate the data
+        $data = $query->paginate($perPage, ['*'], 'page', $currentPage);
+
+        return response()->json([
+            'message' => '',
+            'data' => $data->items(), // Return only the paginated data
+            'status' => true,
+            'pagination' => [
+                'draw' => intval($request->input('draw')), // Ensure draw is returned for DataTables
+                'current_page' => $data->currentPage(),
+                'last_page' => $data->lastPage(),
+                'per_page' => $data->perPage(),
+                'total' => $data->total(),
+            ]
+        ]);
+    }
 }
