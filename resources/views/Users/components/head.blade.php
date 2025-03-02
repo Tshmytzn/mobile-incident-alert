@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <title>Mobile Incident Alert App</title>
     <!-- CSS files -->
     <link href="./dist/css/tabler.min.css?1692870487" rel="stylesheet" />
     <link href="./dist/css/tabler-flags.min.css?1692870487" rel="stylesheet" />

@@ -14,6 +14,8 @@ Route::Get('/user-profile', action: [UserController::class, 'GetProfile']);
 
 Route::post('/user-picture-update', action: [UserController::class, 'UpdateProfilePicture']);
 
+Route::post('/user-password-update', action: [UserController::class, 'UpdateUserPassword']);
+
 Route::post('/user-profile-update', action: [UserController::class, 'UpdateProfile']);
 
 Route::post('/user-contact-update', action: [UserController::class, 'UpdateContact']);
