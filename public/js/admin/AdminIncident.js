@@ -123,7 +123,6 @@ function DisplayData(incidentData) {
 
 function DataTable() {
     sendRequest("GET", "/get-all-incidents", null, function (error, response) {
-        console.log(response);
         if (error) {
             console.error("Pagination Error:", error);
             return;
@@ -157,6 +156,9 @@ function DataTable() {
                     orderable: false,
                     searchable: false,
                     render: function (data, type, row) {
+                        if (row.status == "In Progress") {
+                           return `<button class="btn btn-warning action-btn" disable>Assigned</button>`;
+                        }
                         return `<button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#selectResponderModal" onclick="GetResponder('${row.id}')">Action</button>`;
                     },
                 },
