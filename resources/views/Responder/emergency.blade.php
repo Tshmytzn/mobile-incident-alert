@@ -128,6 +128,7 @@
                     </div>
                 </div>
             </div>
+            @include('Responder.components.modals')
             @include('Responder.components.footer')
         </div>
     </div>

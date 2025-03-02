@@ -38,4 +38,10 @@ class ResponderController extends Controller
         return response()->json(['message' => 'Login successful', 'responder' => $responder, 'status' => true]);
     }
 
+    public function logout(Request $request)
+    {
+        Session::forget('responder_id');
+        return response()->json(['message' => 'Logout successful','route'=>'/responder', 'status' => true]);
+    }
+
 }
