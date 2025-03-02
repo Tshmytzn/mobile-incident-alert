@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\AppUser;
+use App\Models\Incidents;
 use App\Models\Responder;
 use Illuminate\Support\Facades\Validator;
 
@@ -245,6 +246,24 @@ class AdminController extends Controller
         $admin->save();
 
         return response()->json(['message' => 'Password updated successfully', 'status' => true]);
+    }
+
+    public function AvailableResponder()
+    {
+        $responder = Responder::where('status', 1)->get();
+        return response()->json(['message' => 'Responder available', 'data' => $responder,'status',true]);
+    }
+
+    public function AssignResponder(Request $request)
+    {
+        $incident = Incidents::where('id',$request->incident_id)->first();
+        $responder = Responder::where('id', $request->select_responder)->first();
+        $incident->responder_id = $responder->id;
+        $incident->responder_name = $responder->name;
+        $incident->responder_type = $responder->type;
+        $incident->status = 'In Progress';
+        $incident->save();
+        return response()->json(['message' => 'Responder assigned successfully', 'status' => true]);
     }
 
 }

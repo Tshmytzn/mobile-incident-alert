@@ -15,6 +15,9 @@ class Incidents extends Model
         'latitude',
         'longitude',
         'description',
+        'responder_id',
+        'responder_name',
+        'responder_type',
         'status',
         'reported_at'
     ];

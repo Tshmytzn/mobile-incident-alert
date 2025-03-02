@@ -1,6 +1,5 @@
 <?php
 
-use App\Events\GetAlertEvent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlertController;
@@ -34,4 +33,9 @@ Route::post('/update-responder', action: [AdminController::class, 'UpdateRespond
 
 Route::get('/get-incidents', action: [AlertController::class, 'GetAlerts']);
 
+Route::get('/get-all-incidents', action: [AlertController::class, 'GetAllAlerts']);
+
+Route::get('/get-available-responder', action: [AdminController::class, 'AvailableResponder']);
+
+Route::post('/assign-incident', action: [AdminController::class, 'AssignResponder']);
 

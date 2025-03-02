@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('longitude');
             $table->string('description')->nullable();
             $table->enum('status', ['Pending', 'In Progress', 'Resolved'])->default('Pending');
+            $table->string('responder_id')->nullable();
+            $table->string('responder_name')->nullable();
+            $table->string('responder_type')->nullable();
             $table->string('reported_at');
             $table->timestamps();
         });

@@ -379,3 +379,44 @@
         </div>
     </div>
 </div>
+
+<!-- Logout Confirmation Modal -->
+<div class="modal modal-blur fade" id="selectResponderModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responderModalLabel">Responder List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="select-responder-form" method="POST">
+                    @csrf
+                    <input type="text" name="incident_id" id="incident_id" required>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label">Available Responder</label>
+                            <select class="form-select" name="select_responder" id="select-responder"
+                                aria-label="Default select example" required>
+                                
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                @include('Administrator.components.button', [
+                    'buttonWidth' => '',
+                    'buttonLabel' => 'Save',
+                    'buttonID' => 'select-responder-button',
+                    'buttonSpan' => 'select-responder-span',
+                    'buttonModal' => 'selectResponderModal',
+                    'buttonFunction' => 'AssignResponder',
+                    'buttonFormID' => 'select-responder-form',
+                    'buttonUrl' => '/assign-incident',
+                ])
+            </div>
+        </div>
+    </div>
+</div>

@@ -33,8 +33,8 @@
 
                         <!-- Map Section -->
                         <div class="col-12 mt-2">
-                            <div class="card-body">
-                                <div id="map" style="height: 300px;"></div>
+                             <div class="card-body">
+                                <div id="map" style="height: 540px;"></div>
                             </div>
                         </div>
 
@@ -42,10 +42,13 @@
                             <table id="userTable" class="table table-hover ">
                                 <thead>
                                     <tr>
+                                        <th>Emergency Type</th>
                                         <th>Name</th>
-                                        <th>Email</th>
+                                        <th>Number</th>
                                         <th>Role</th>
-                                        <th>Phone Number</th>
+                                        <th>Emergency Contact</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -67,15 +70,10 @@
             @include('Administrator.components.footer')
         </div>
     </div>
+    @vite('resources/js/app.js')
     @include('Administrator.components.scripts')
-
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable({
-
-            });
-        });
-    </script>
+    <script src="{{ asset('js/RequestScript.js') }}"></script>
+    <script src="{{ asset('js/admin/AdminIncident.js') }}"></script>
 
 </body>
 
