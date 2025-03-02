@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\CheckUserSession;
+use App\Http\Middleware\ResponderAuth;
+
 
 Route::get('/', function () {
     return view('login');
 });
 
-//User's Routes  
+//User's Routes
 
 // Login
 Route::get('/login', function () {
@@ -82,12 +84,17 @@ Route::middleware([AdminAuth::class])->group(function () {
     });
 });
 
-//Responder Routes 
+//Responder Routes
 
 // Login
 Route::get('/responder', function () {
     return view('Responderlogin');
 });
+
+Route::middleware([ResponderAuth::class])->group(function () {
+
+    require __DIR__ . '/responderroute.php';
+
 
 // Dashboard
 Route::get('/responderdashboard', function () {
@@ -112,4 +119,6 @@ Route::get('/responderreports', function () {
 // Settings Page
 Route::get('/respondersettings', function () {
     return view('Responder.settings');
+});
+
 });
