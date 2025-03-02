@@ -65,6 +65,17 @@ function playMusic() {
     });
 }
 
+function stopMusic() {
+    var audio = document.getElementById("myAudio");
+
+    // Pause the audio and reset to the beginning
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0; // Reset the audio playback to the start
+        console.log("Audio stopped.");
+    }
+}
+
 // Listen for the first click event on the page to trigger the audio
 window.addEventListener('click', function() {
     playMusic();
@@ -104,6 +115,7 @@ setTimeout(() => {
             notIcon.style.display = 'none';  // Hide the icon
             notIcon.textContent = 0;
             console.log("Data is empty");
+            stopMusic();
             // Handle empty data scenario
         }
     });
