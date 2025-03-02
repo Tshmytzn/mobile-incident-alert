@@ -30,12 +30,12 @@ async function UpdateProfile(formID, buttonID, buttonSpan, Url, Modal) {
 //     }
 // }
 
-// async function UpdateResponderPassword(formID, buttonID, buttonSpan, Url, Modal) {
-//     const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
-//     if (status) {
-//         GetResponderProfile();
-//     }
-// }
+async function UpdateresponderPassword(formID, buttonID, buttonSpan, Url, Modal) {
+    const status = await PostRequest(formID, buttonID, buttonSpan, Url, Modal);
+    if (status) {
+        GetResponderProfile();
+    }
+}
 
 $(document).ready(function () {
     GetResponderProfile();

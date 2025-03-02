@@ -52,7 +52,7 @@
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Your Usernmae"
+                            <input type="text" name="username" class="form-control" placeholder="Your Username"
                                 autocomplete="off">
                         </div>
                         <div class="mb-2">

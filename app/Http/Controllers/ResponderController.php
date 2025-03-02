@@ -60,4 +60,23 @@ class ResponderController extends Controller
         $data->save();
         return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
     }
+
+    public function UpdateresponderPassword(Request $request)
+    {
+        $responder_id = Session::get('responder_id');
+        $responder = Responder::find($responder_id);
+
+        if (!$responder) {
+            return response()->json(['message' => 'User not found', 'status' => false], 404);
+        }
+
+        if (!Hash::check($request->old_password, $responder->password)) {
+            return response()->json(['message' => 'Old password is incorrect', 'status' => false], 400);
+        }
+
+        $responder->password = $request->new_password;
+        $responder->save();
+
+        return response()->json(['message' => 'Password updated successfully', 'status' => true]);
+    }
 }

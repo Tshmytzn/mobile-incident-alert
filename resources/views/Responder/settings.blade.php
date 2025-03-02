@@ -71,7 +71,7 @@
                                         <fieldset class="border rounded p-3 mb-4">
                                             <legend class="float-none w-auto px-2">Security</legend>
                                             <p class="text-muted">Set a permanent password.</p>
-                                            <button data-bs-toggle="modal" data-bs-target="#newpass"
+                                            <button data-bs-toggle="modal" data-bs-target="#responderpassmodal"
                                                 class="btn btn-outline-dark"><i class="bi bi-shield-lock me-2"></i> Set
                                                 New
                                                 Password</button>
