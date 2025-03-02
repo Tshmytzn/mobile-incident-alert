@@ -4,6 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Mobile Incident Alert App</title>
+
+    <link rel="icon" type="png" href="{{asset('./static/mia_logo-modified.png')}}">
+
     <!-- CSS files -->
     <link href="./dist/css/tabler.min.css?1692870487" rel="stylesheet" />
     <link href="./dist/css/tabler-flags.min.css?1692870487" rel="stylesheet" />
