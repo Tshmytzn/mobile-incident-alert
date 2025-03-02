@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Leaflet JS & CSS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
+<script src="{{ asset('js/RequestScript.js') }}"></script>
 {{-- preview profile pic --}}
 <script>
     document.querySelector("input[type='file']").addEventListener("change", function(event) {
@@ -33,7 +33,7 @@
         // Initialize the map
         var map = L.map('map', {
             center: [10.6742, 122.9575],
-            zoom: 20, 
+            zoom: 20,
             zoomControl: false,
             dragging: false,
             scrollWheelZoom: false,
