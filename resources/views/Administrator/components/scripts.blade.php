@@ -29,5 +29,91 @@
 </script>
 
 <script>
-   
+
+let isAlertShown = false;
+
+function playMusic() {
+    var audio = document.getElementById("myAudio");
+
+    // Try to play the audio
+    audio.play().then(() => {
+        
+    }).catch(function (error) {
+        console.error("Error playing audio:", error);
+
+        if (error.name === 'NotAllowedError'  && !isAlertShown) {
+            isAlertShown = true;
+            // Show SweetAlert message to the user
+            Swal.fire({
+                title: 'Notification Blocked!',
+                text: 'Click anywhere on the screen to get updates.',
+                icon: 'warning',
+                confirmButtonText: 'Got it!',
+                willClose: () => {
+                    // Add click listener after the alert is closed
+                    window.addEventListener('click', function() {
+
+                        isAlertShown = false;
+                        // Attempt to play the audio on user click
+                        audio.play().catch(function (error) {
+                            console.error("Error playing audio after click:", error);
+                        });
+                    });
+                }
+            });
+        }
+    });
+}
+
+function stopMusic() {
+    var audio = document.getElementById("myAudio");
+
+    // Pause the audio and reset to the beginning
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0; // Reset the audio playback to the start
+        console.log("Audio stopped.");
+    }
+}
+
+
+// Set up the Echo listener after a delay
+setTimeout(() => {
+    window.Echo.channel("alert-channel").listen("GetAlertEvent", (e) => {
+        const notification = e.data.original.data;
+        const notIcon = document.getElementById('notifications-count');
+        if (notification && Array.isArray(notification) && notification.length > 0) {
+            playMusic();  // Play music when data is received
+            notIcon.style.display = 'block';  // Show the icon
+            notIcon.textContent = notification.length;
+
+            const divNot = document.getElementById('div-not');
+            divNot.innerHTML = '';
+            notification.forEach(item => {
+            const newDiv = document.createElement('div');
+            newDiv.classList.add('list-group-item');
+            
+            newDiv.innerHTML = `
+                <div class="row align-items-center">
+                <div class="col text-truncate">
+                    <span class="text-body d-block">Name: ${item.name} (${item.role})</span>
+                    <div class="d-block text-secondary text-truncate mt-n1">
+                    Emergency Type: ${item.type}
+                    </div>
+                </div>
+                </div>
+            `;
+            
+            divNot.appendChild(newDiv); // Append the new div to the div-not
+            });
+
+        } else {
+            notIcon.style.display = 'none';  // Hide the icon
+            notIcon.textContent = 0;
+            console.log("Data is empty");
+            stopMusic();
+            // Handle empty data scenario
+        }
+    });
+}, 200);
 </script>

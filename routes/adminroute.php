@@ -35,6 +35,8 @@ Route::get('/get-incidents', action: [AlertController::class, 'GetAlerts']);
 
 Route::get('/get-all-incidents', action: [AlertController::class, 'GetAllAlerts']);
 
+Route::get('/get-solve-incidents', action: [AlertController::class, 'GetSolveAlerts']);
+
 Route::get('/get-available-responder', action: [AdminController::class, 'AvailableResponder']);
 
 Route::post('/assign-incident', action: [AdminController::class, 'AssignResponder']);

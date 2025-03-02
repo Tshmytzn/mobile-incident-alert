@@ -258,6 +258,8 @@ class AdminController extends Controller
     {
         $incident = Incidents::where('id',$request->incident_id)->first();
         $responder = Responder::where('id', $request->select_responder)->first();
+        $responder->status = false;
+        $responder->save();
         $incident->responder_id = $responder->id;
         $incident->responder_name = $responder->name;
         $incident->responder_type = $responder->type;

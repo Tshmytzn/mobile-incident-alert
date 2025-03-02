@@ -26,9 +26,6 @@
                                     Incident Management
                                 </h2>
                             </div>
-                            <button class="btn btn-outline-success rounded-circle shadow-sm" data-bs-toggle="modal"
-                                data-bs-target="#settingsModal">
-                                <i class="bi bi-gear-fill"></i> </button>
                         </div>
 
                         <!-- Map Section -->

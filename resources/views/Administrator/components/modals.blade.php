@@ -391,7 +391,7 @@
             <div class="modal-body">
                 <form id="select-responder-form" method="POST">
                     @csrf
-                    <input type="text" name="incident_id" id="incident_id" required>
+                    <input type="text" name="incident_id" id="incident_id" required hidden>
                     <div class="row g-3">
                         <div class="col-md-12">
                             <label class="form-label">Available Responder</label>

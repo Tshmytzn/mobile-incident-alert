@@ -98,7 +98,6 @@ function DisplayData(incidentData) {
 
     // Add markers
     pinLocations.forEach(function (location) {
-        console.log(location);
         L.marker([location.lat, location.lng], { icon: redIcon })
             .addTo(map)
             .bindPopup("<b> Name: " + location.name + " (" + location.role +")"
