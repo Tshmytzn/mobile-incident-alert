@@ -83,7 +83,8 @@
     </div>
     @include('Administrator.components.scripts')
 </body>
-<script src="{{ asset('js/Responder/ResponderLogin.js') }}"></script>
 <script src="{{ asset('js/RequestScript.js') }}"></script>
+<script src="{{ asset('js/responder/ResponderLogin.js') }}"></script>
+
 
 </html>

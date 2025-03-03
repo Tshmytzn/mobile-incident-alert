@@ -102,7 +102,7 @@
 
         </div>
         @include('Responder.components.scripts')
-        <script src="{{ asset('js/Responder/ResponderProfile.js') }}"></script>
+        <script src="{{ asset('js/responder/ResponderProfile.js') }}"></script>
 
 </body>
 
