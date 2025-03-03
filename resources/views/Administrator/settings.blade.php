@@ -57,12 +57,12 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Full Name</label>
                                                 <input type="text" class="form-control" id="admin_name"
-                                                    name="admin_name" required placeholder="Zalia Redoblo">
+                                                    name="admin_name" required placeholder="Enter your Name">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Email Address</label>
                                                 <input type="email" class="form-control"id="admin_email"
-                                                    name="admin_email" required placeholder="admin@mail.com">
+                                                    name="admin_email" required placeholder="Enter Your Email">
                                             </div>
                                         </fieldset>
                                     </form>

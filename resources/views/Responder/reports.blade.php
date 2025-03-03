@@ -27,18 +27,18 @@
                         </div>
 
                         <div class="mt-5">
-                            <table id="userTable" class="table table-hover ">
+                            <table id="ReportTable" class="table table-hover ">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Phone Number</th>
+                                        <th>#</th>
+                                        <th>Report Type</th>
+                                        <th>Report Date</th>
+                                        <th>Status</th>
+
                                     </tr>
                                 </thead>
                             </table>
                         </div>
-
 
                     </div>
                 </div>
@@ -56,14 +56,8 @@
         </div>
     </div>
     @include('Responder.components.scripts')
+    <script src="{{ asset('js/responder/ResponderReport.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable({
-
-            });
-        });
-    </script>
 
 
 </body>

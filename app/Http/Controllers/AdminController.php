@@ -46,7 +46,7 @@ class AdminController extends Controller
         }
 
         $data = new AppUser();
-        $data->name = $request->name;
+        $data->name = strtoupper($request->name);
         $data->email =$request->email;
         $data->password = $request->password;
         $data->role = ucfirst($request->role);
@@ -105,7 +105,7 @@ class AdminController extends Controller
                 }
             }
         $user = AppUser::where('id', $request->userid)->first();
-        $user->name = $request->name;
+        $user->name = strtoupper($request->name);
         $user->email = $request->email;
         if(!empty($request->password)){
             $user->password = $request->password;
@@ -124,7 +124,7 @@ class AdminController extends Controller
         }
 
         $data = new Responder();
-        $data->name = $request->name;
+        $data->name = strtoupper($request->name);
         $data->username = $request->username;
         $data->password = $request->password;
         $data->type = ucfirst($request->role);
@@ -181,7 +181,7 @@ class AdminController extends Controller
             }
         }
         $user = Responder::where('id', $request->responderid)->first();
-        $user->name = $request->name;
+        $user->name = strtoupper($request->name);
         $user->username = $request->username;
         if (!empty($request->password)) {
             $user->password = $request->password;
@@ -223,7 +223,7 @@ class AdminController extends Controller
     {
         $admin_id = Session::get('admin_id');
         $data = Admin::find($admin_id);
-        $data->name = $request['admin_name'];
+        $data->name = strtoupper($request['admin_name']);
         $data->email = $request['admin_email'];
         $data->save();
         return response()->json(['message' => 'Profile updated successfully', 'status'=>true]);
@@ -233,15 +233,15 @@ class AdminController extends Controller
     {
         $admin_id = Session::get('admin_id');
         $admin = Admin::find($admin_id);
-        
+
         if (!$admin) {
             return response()->json(['message' => 'Admin not found', 'status' => false], 404);
         }
-    
+
         if (!Hash::check($request->admin_old_password, $admin->password)) {
             return response()->json(['message' => 'Old password is incorrect', 'status' => false], 400);
         }
-    
+
         $admin->password = $request->admin_new_password;
         $admin->save();
 
@@ -250,7 +250,7 @@ class AdminController extends Controller
 
     public function AvailableResponder()
     {
-        $responder = Responder::where('status', 1)->get();
+        $responder = Responder::all();
         return response()->json(['message' => 'Responder available', 'data' => $responder,'status',true]);
     }
 

@@ -8,31 +8,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="responder_pass_form" method="POST">
+                <form id="responder-pass-form" method="POST">
                     @csrf
                     <div class="row g-3">
                         <div class="col-12">
-                            <label class="form-label"> Enter Password</label>
-                            <input type="password" class="form-control" id="old_password" name="old_password"
-                                placeholder="Enter current password">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="old_password" required
+                                name="old_password" placeholder="Enter Password">
                         </div>
                         <div class="col-12">
-                            <label class="form-label">Enter New Password</label>
-                            <input type="password" class="form-control" id="new_password" name="new_password"
-                                placeholder="Enter new password">
+                            <label class="form-label"> New Password</label>
+                            <input type="password" class="form-control" id="new_password" required
+                                name="new_password" placeholder="Enter New Password">
                         </div>
                     </div>
                 </form>
             </div>
+
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close</button>
                 @include('Administrator.components.button', [
                     'buttonWidth' => '',
                     'buttonLabel' => 'Save Changes',
-                    'buttonID' => 'update-responderpass-button',
+                    'buttonID' => 'update-password-button',
                     'buttonSpan' => 'update-password-button-span',
                     'buttonModal' => 'responderpassmodal',
-                    'buttonFunction' => 'UpdateresponderPassword',
-                    'buttonFormID' => 'responder_pass_form',
+                    'buttonFunction' => 'UpdateResponderPassword',
+                    'buttonFormID' => 'responder-pass-form',
                     'buttonUrl' => '/responder-password-update',
                 ])
             </div>

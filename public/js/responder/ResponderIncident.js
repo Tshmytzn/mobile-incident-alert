@@ -135,7 +135,7 @@ function DataTable(data) {
                     <p class="card-text"><strong>Phone Number:</strong> ${item.phone_number ? item.phone_number:''}</p>
                     <p class="card-text"><strong>Emergency Contact:</strong> ${item.emergency_contact_phone  ? item.emergency_contact_phone:''}</p>
                 </div>
-                <button class="btn btn-success action-btn" onclick="confirmAction('${item.id}')">Confirm</button>
+                <button class="btn btn-success action-btn" onclick="confirmAction('${item.id}')">Resolve</button>
             </div>
         `;
 
