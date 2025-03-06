@@ -97,6 +97,7 @@ async function GetIncidents() {
 }
 
 setInterval(() => {
+    GetIncidents();
     if (typeof DisplayData === "function") {
         DisplayData(incidentData);
     }
@@ -135,12 +136,14 @@ function notificationUpdate(){
             });
 
         } else {
+            console.log(notification)
             notIcon.style.display = 'none';  // Hide the icon
             notIcon.textContent = 0;
             console.log("Data is empty");
             stopMusic();
             // Handle empty data scenario
         }
+        console.log(notification)
 }
 
 $(document).ready(function () {
