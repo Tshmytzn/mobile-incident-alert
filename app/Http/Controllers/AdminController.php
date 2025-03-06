@@ -195,7 +195,7 @@ class AdminController extends Controller
     public function logout(Request $request)
     {
         Session::forget('admin_id');
-        return response()->json(['message' => 'Logout successful','route'=>'/administrator', 'status' => true]);
+        return response()->json(['message' => 'Logout successful','route'=>'/', 'status' => true]);
     }
 
     public function GetAdminProfile(){

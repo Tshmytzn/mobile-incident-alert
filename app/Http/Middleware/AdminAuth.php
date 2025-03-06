@@ -21,7 +21,7 @@ class AdminAuth
         }
         // Check if admin session exists
         if (!Session::has('admin_id')) {
-            return redirect('/administrator')->with('error', 'You must log in first.');
+            return redirect('/')->with('error', 'You must log in first.');
         }
 
         return $next($request);
