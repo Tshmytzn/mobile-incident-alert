@@ -1,33 +1,6 @@
 var map; // Declare map globally
 var incidentData = null;
 
-async function GetIncidents() {
-    try {
-        incidentData = await GetRequest("/get-incidents");
-
-        if (!incidentData || !Array.isArray(incidentData.data)) {
-            console.error("Invalid data structure:", incidentData);
-            return;
-        }
-
-        DisplayData(incidentData);
-        DataTable();
-    } catch (error) {
-        console.error("Error fetching incidents:", error);
-    }
-}
-
-setTimeout(() => {
-    window.Echo.channel("alert-channel").listen("GetAlertEvent", (e) => {
-        incidentData = e.data.original;
-        DisplayData(incidentData);
-        if (incidentData.data && Array.isArray(incidentData.data) && incidentData.data.length > 0) {
-            console.log()
-            DataTable();
-        }
-    });
-}, 200);
-
 function DisplayData(incidentData) {
     if (map) {
         map.remove(); // Remove previous map instance
@@ -198,6 +171,6 @@ async function AssignResponder(formID, buttonID, buttonSpan, Url, Modal) {
 }
 
 $(document).ready(function () {
-    GetIncidents();
+    DataTable();
     GetResponder();
 });

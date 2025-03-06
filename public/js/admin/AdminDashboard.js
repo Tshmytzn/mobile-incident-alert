@@ -1,33 +1,9 @@
 var map; // Declare map globally
-var incidentData = null;
-
-async function GetIncidents() {
-    try {
-        incidentData = await GetRequest("/get-incidents");
-
-        if (!incidentData || !Array.isArray(incidentData.data)) {
-            console.error("Invalid data structure:", incidentData);
-            return;
-        }
-
-        DisplayData(incidentData);
-    } catch (error) {
-        console.error("Error fetching incidents:", error);
-    }
-}
-
-setTimeout(() => {
-    window.Echo.channel("alert-channel").listen("GetAlertEvent", (e) => {
-        incidentData = e.data.original;
-        DisplayData(incidentData);
-    });
-}, 200);
 
 function DisplayData(incidentData) {
     if (map) {
         map.remove(); // Remove previous map instance
     }
-
     var centerCoords = [10.67878697598803, 122.96234099560286];
 
     // Initialize the map
@@ -109,6 +85,4 @@ function DisplayData(incidentData) {
 }
 
 // Run after document is fully loaded
-$(document).ready(function () {
-    GetIncidents();
-});
+

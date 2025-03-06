@@ -76,11 +76,38 @@ function stopMusic() {
     }
 }
 
+var incidentData = null;
 
-// Set up the Echo listener after a delay
-setTimeout(() => {
-    window.Echo.channel("alert-channel").listen("GetAlertEvent", (e) => {
-        const notification = e.data.original.data;
+async function GetIncidents() {
+    try {
+        incidentData = await GetRequest("/get-incidents");
+
+        if (!incidentData || !Array.isArray(incidentData.data)) {
+            console.error("Invalid data structure:", incidentData);
+            return;
+        }
+        notificationUpdate(incidentData);
+        if (typeof DisplayData === "function") {
+        DisplayData(incidentData);
+        }
+        
+    } catch (error) {
+        console.error("Error fetching incidents:", error);
+    }
+}
+
+setInterval(() => {
+    if (typeof DisplayData === "function") {
+        DisplayData(incidentData);
+    }
+    if (typeof DisplayData === "function") {
+        DataTable();
+    }
+    notificationUpdate(incidentData);
+}, 10000); // Fetch every 10 seconds
+
+function notificationUpdate(){
+    const notification = incidentData.data;
         const notIcon = document.getElementById('notifications-count');
         if (notification && Array.isArray(notification) && notification.length > 0) {
             playMusic();  // Play music when data is received
@@ -114,6 +141,9 @@ setTimeout(() => {
             stopMusic();
             // Handle empty data scenario
         }
-    });
-}, 200);
+}
+
+$(document).ready(function () {
+    GetIncidents();
+});
 </script>
