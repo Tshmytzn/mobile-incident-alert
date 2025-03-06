@@ -7,7 +7,7 @@ use App\Http\Middleware\ResponderAuth;
 
 
 Route::get('/', function () {
-    return view('login');
+    return view('Adminlogin');
 });
 
 //User's Routes
