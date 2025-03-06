@@ -248,7 +248,7 @@
     @vite('resources/js/app.js')
     @include('Administrator.components.scripts')
     <script src="{{ asset('js/RequestScript.js') }}"></script>
-    <script src="{{ asset('js/admin/AdminDashBoard.js') }}"></script>
+    <script src="{{ asset('js/admin/AdminDashboard.js') }}"></script>
 
 </body>
 
