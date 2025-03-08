@@ -52,7 +52,7 @@ function GetResponderData() {
                 orderable: false,
                 searchable: false,
                 render: function (data, type, row) {
-                    return `<button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#updateResponder" onclick="UpdateResponderModal('${row.id}','${row.name}','${row.username}','${row.type}')">Action</button>`;
+                    return `<button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#updateResponder" onclick="UpdateResponderModal('${row.id}','${row.name}','${row.username}','${row.type}')"><i class="bi bi-pencil-square"></i></button>`;
                 },
             },
         ],
