@@ -32,7 +32,7 @@ function DisplayData(incidentData) {
         zoomSnap: 0.1,
         zoomDelta: 0.1,
         zoomControl: false,
-        dragging: false,
+        dragging: true,
         scrollWheelZoom: false,
         doubleClickZoom: false,
         touchZoom: false,
@@ -120,29 +120,40 @@ function DataTable(data) {
     divNot.innerHTML = "";
 
     data.data.forEach((item) => {
-        // Create a new div element
-        const newDiv = document.createElement("div");
+        // Create a new div for Bootstrap grid layout
+        const cardWrapper = document.createElement("div");
+        cardWrapper.className =
+            "col-lg-4 col-12 d-flex justify-content-center"; // Responsive layout
 
-        // Set the innerHTML of the new div
-        newDiv.innerHTML = `
+        // Create card
+        cardWrapper.innerHTML = `
             <div class="card m-2" style="width: 18rem;">
                 <div class="card-header">
                     Emergency Information
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
-                    <p class="card-text"><strong>Emergency Type:</strong> ${item.type}</p>
-                    <p class="card-text"><strong>Phone Number:</strong> ${item.phone_number ? item.phone_number:''}</p>
-                    <p class="card-text"><strong>Emergency Contact:</strong> ${item.emergency_contact_phone  ? item.emergency_contact_phone:''}</p>
+                    <p class="card-text"><strong>Emergency Type:</strong> ${
+                        item.type
+                    }</p>
+                    <p class="card-text"><strong>Phone Number:</strong> ${
+                        item.phone_number || "N/A"
+                    }</p>
+                    <p class="card-text"><strong>Emergency Contact:</strong> ${
+                        item.emergency_contact_phone || "N/A"
+                    }</p>
                 </div>
-                <button class="btn btn-success action-btn" onclick="confirmAction('${item.id}')">Resolve</button>
+                <button class="btn btn-success action-btn" onclick="confirmAction('${
+                    item.id
+                }')">Resolve</button>
             </div>
         `;
 
-        // Append the new div to the div-not
-        divNot.appendChild(newDiv);
+        // Append card to the container
+        divNot.appendChild(cardWrapper);
     });
 }
+
 
 function confirmAction(id) {
     Swal.fire({

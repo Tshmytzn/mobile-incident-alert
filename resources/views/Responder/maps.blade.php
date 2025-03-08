@@ -33,7 +33,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-center mt-5" id="user-info">
+                        <div class="d-flex justify-content-center mt-5 row" id="user-info">
                             {{-- <div class="card" style="width: 18rem;">
                                 <div class="card-header">
                                     Emergency Information
