@@ -268,3 +268,39 @@ function SendManualAlert() {
             );
         }
 }
+let alertData = null;
+async function GetActiveAlert(){
+   const alert = await GetRequest("/user-get-active-alert");
+   document.getElementById("countAlert").textContent = alert.data.length;
+   alertData = alert.data;
+}
+
+function showAlert() {
+    const divNot = document.getElementById("card-to-show");
+    divNot.innerHTML = "";
+    alertData.forEach((item) => {
+        // Create a new div element
+        const newDiv = document.createElement("div");
+
+        // Set the innerHTML of the new div
+        newDiv.innerHTML = `
+            <div class="col-12">
+                            <div class="card border shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Type: ${item.type}</h5>
+                                    <p class="card-text"><strong>Responder:</strong> ${item.responder_name}</p>
+                                    <p class="card-text"><strong>Date:</strong> ${item.reported_at}</p>
+                                    <p class="card-text"><strong>Status:</strong> <span class="text-white ${item.status == "In Progress"?'badge bg-warning':'badge bg-success'}">${item.status}</span></p>
+                                </div>
+                            </div>
+                        </div>
+        `;
+
+        // Append the new div to the div-not
+        divNot.appendChild(newDiv);
+    });
+}
+
+$(document).ready(function () {
+    GetActiveAlert();
+});
