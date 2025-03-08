@@ -33,15 +33,17 @@
             <div class="page-body">
                 <div class="container-xl">
                     <div class="row row-deck row-cards">
-                        <div class="mt-5">
-                            <table id="userTable" class="table table-hover ">
-                                <thead>
+                        <div>
+                            <table id="userTable" class="table-light table-hover ">
+                                <thead class="text-white" style="background-color: #00703C;">
                                     <tr>
                                         <th>Type</th>
                                         <th>Date</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
+
+
                             </table>
                         </div>
                     </div>
