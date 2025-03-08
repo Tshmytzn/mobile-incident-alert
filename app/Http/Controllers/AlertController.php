@@ -45,7 +45,7 @@ class AlertController extends Controller
 
     public function GetAlerts()
     {
-        $data = Incidents::where('incidents.status', 'Pending')
+        $data = Incidents::whereIn('incidents.status', ['Pending', 'In Progress'])
             ->join('app_user', 'incidents.user_id', '=', 'app_user.id')
             ->select(
                 'incidents.*',

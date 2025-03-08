@@ -108,7 +108,8 @@ setInterval(() => {
 }, 10000); // Fetch every 10 seconds
 
 function notificationUpdate(){
-    const notification = incidentData.data;
+    const notification = incidentData.data.filter(item => item.status === "Pending");
+    console.log(notification)
         const notIcon = document.getElementById('notifications-count');
         if (notification && Array.isArray(notification) && notification.length > 0) {
             playMusic();  // Play music when data is received

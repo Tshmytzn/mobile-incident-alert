@@ -64,6 +64,8 @@ function DisplayData(incidentData) {
         address: element.address,
         phone_number: element.phone_number,
         emergency_contact_phone: element.emergency_contact_phone,
+        status: element.status,
+        incident_type: element.type,
     }));
     // Define a red marker icon
     var redIcon = L.icon({
@@ -74,9 +76,19 @@ function DisplayData(incidentData) {
         popupAnchor: [1, -34],
     });
 
+    var yellowIcon = L.icon({
+        iconUrl:
+            "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+    });
+
     // Add markers
     pinLocations.forEach(function (location) {
-        L.marker([location.lat, location.lng], { icon: redIcon })
+        L.marker([location.lat, location.lng], {
+            icon: location.status === "Pending" ? redIcon : yellowIcon,
+        })
             .addTo(map)
             .bindPopup(
                 "<b> Name: " +
@@ -93,7 +105,13 @@ function DisplayData(incidentData) {
                     "<br>Emergency Contact: " +
                     (location.emergency_contact_phone != null
                         ? location.emergency_contact_phone
-                        : "")
+                        : "") +
+                    "<br>Type: " +
+                    (location.incident_type != null
+                        ? location.incident_type
+                        : "") +
+                    "<br>Status: " +
+                    (location.status != null ? location.status : "")
             );
     });
 }
