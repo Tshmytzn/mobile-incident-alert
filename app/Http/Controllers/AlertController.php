@@ -189,4 +189,11 @@ class AlertController extends Controller
 
         return response()->json(['message' => 'Incident confirmed successfully', 'status' => true]);
     }
+
+    public function GetActiveAlert()
+    {
+        $data = Incidents::whereIn('incidents.status', ['Pending', 'In Progress'])
+        ->where('user_id', Session::get('user_id'))->get();
+        return response()->json(['data' => $data,'status'=>true]);
+    }
 }

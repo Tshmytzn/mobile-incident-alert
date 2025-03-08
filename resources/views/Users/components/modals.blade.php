@@ -13,11 +13,13 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <label class="form-label"> Enter Password</label>
-                            <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Enter current password">
+                            <input type="password" class="form-control" id="old_password" name="old_password"
+                                placeholder="Enter current password">
                         </div>
                         <div class="col-12">
                             <label class="form-label">Enter New Password</label>
-                            <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Enter new password">
+                            <input type="password" class="form-control" id="new_password" name="new_password"
+                                placeholder="Enter new password">
                         </div>
                     </div>
                 </form>
@@ -31,16 +33,16 @@
                         <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                         <path d="M18.364 5.636l-12.728 12.728" />
                     </svg> Close</button>
-                    @include('Administrator.components.button', [
-                        'buttonWidth' => '',
-                        'buttonLabel' => 'Save Changes',
-                        'buttonID' => 'update-userpass-button',
-                        'buttonSpan' => 'update-password-button-span',
-                        'buttonModal' => 'Userpassmodal',
-                        'buttonFunction' => 'UpdateUserPassword',
-                        'buttonFormID' => 'User_pass_form',
-                        'buttonUrl' => '/user-password-update',
-                    ])
+                @include('Administrator.components.button', [
+                    'buttonWidth' => '',
+                    'buttonLabel' => 'Save Changes',
+                    'buttonID' => 'update-userpass-button',
+                    'buttonSpan' => 'update-password-button-span',
+                    'buttonModal' => 'Userpassmodal',
+                    'buttonFunction' => 'UpdateUserPassword',
+                    'buttonFormID' => 'User_pass_form',
+                    'buttonUrl' => '/user-password-update',
+                ])
             </div>
         </div>
     </div>
@@ -159,3 +161,72 @@
 
     </div>
 </div>
+
+<div class="modal fade" id="viewAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="viewAlert" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadProfilePicLabel">Active Alert</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-4 scroll-container">
+                    <div class="row g-3" id="card-to-show">
+                        <div class="col-12">
+                            <div class="card border shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Type: Fire Emergency</h5>
+                                    <p class="card-text"><strong>Responder:</strong> John Doe</p>
+                                    <p class="card-text"><strong>Date:</strong> March 8, 2025</p>
+                                    <p class="card-text"><strong>Status:</strong> <span class="badge bg-danger">Pending</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card border shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Type: Medical Emergency</h5>
+                                    <p class="card-text"><strong>Responder:</strong> Jane Smith</p>
+                                    <p class="card-text"><strong>Date:</strong> March 7, 2025</p>
+                                    <p class="card-text"><strong>Status:</strong> <span class="badge bg-success">Resolved</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card border shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Type: Road Accident</h5>
+                                    <p class="card-text"><strong>Responder:</strong> Alex Brown</p>
+                                    <p class="card-text"><strong>Date:</strong> March 6, 2025</p>
+                                    <p class="card-text"><strong>Status:</strong> <span class="badge bg-warning text-dark">In Progress</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card border shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Type: Police Assistance</h5>
+                                    <p class="card-text"><strong>Responder:</strong> Mark Wilson</p>
+                                    <p class="card-text"><strong>Date:</strong> March 5, 2025</p>
+                                    <p class="card-text"><strong>Status:</strong> <span class="badge bg-info text-dark">Investigating</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card border shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">Type: Flood Rescue</h5>
+                                    <p class="card-text"><strong>Responder:</strong> Sarah Lee</p>
+                                    <p class="card-text"><strong>Date:</strong> March 4, 2025</p>
+                                    <p class="card-text"><strong>Status:</strong> <span class="badge bg-primary">Ongoing</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End of row -->
+                </div> <!-- End of container -->
+            </div>
+        </div>
+    </div>
+</div>
+
