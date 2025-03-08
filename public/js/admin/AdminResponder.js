@@ -18,6 +18,34 @@ function GetResponderData() {
     $("#userTable").DataTable({
         processing: true,
         serverSide: true, // Enable server-side processing
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: "copyHtml5",
+                text: "Copy",
+                className: "btn btn-secondary",
+            },
+            {
+                extend: "excelHtml5",
+                text: "Excel",
+                className: "btn btn-success",
+            },
+            {
+                extend: "csvHtml5",
+                text: "CSV",
+                className: "btn btn-info",
+            },
+            {
+                extend: "pdfHtml5",
+                text: "PDF",
+                className: "btn btn-danger",
+            },
+            {
+                extend: "print",
+                text: "Print",
+                className: "btn btn-primary",
+            },
+        ],
         ajax: function (data, callback) {
             let url = `/get-responder?start=${data.start}&length=${data.length}&draw=${data.draw}`;
             if (data.search.value) {
