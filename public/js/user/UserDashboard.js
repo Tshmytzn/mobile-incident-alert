@@ -127,6 +127,7 @@ async function checkUserLocation() {
                                     });
                                     resolve();
                                 } else {
+                                    GetActiveAlert();
                                     Swal.fire({
                                         toast: true,
                                         position: "top-end",
@@ -194,11 +195,11 @@ function SendManualAlert() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function (position) {
-                    // var userLat = position.coords.latitude;
-                    // var userLng = position.coords.longitude;
+                    var userLat = position.coords.latitude;
+                    var userLng = position.coords.longitude;
 
-                    var userLat = 10.678985;
-                    var userLng = 122.96208;
+                    // var userLat = 10.678985;
+                    // var userLng = 122.96208;
 
                     if (isInsideCustomBoundary(userLat, userLng)) {
                         let formData = new FormData();
@@ -229,6 +230,7 @@ function SendManualAlert() {
                                         timer: 1500,
                                     });
                                 } else {
+                                    GetActiveAlert();
                                     Swal.fire({
                                         toast: true,
                                         position: "top-end",
@@ -288,7 +290,7 @@ function showAlert() {
                             <div class="card border shadow">
                                 <div class="card-body">
                                     <h5 class="card-title">Type: ${item.type}</h5>
-                                    <p class="card-text"><strong>Responder:</strong> ${item.responder_name}</p>
+                                    <p class="card-text"><strong>Responder:</strong> ${item.responder_name == null ? "No Responder" : item.responder_name}</p>
                                     <p class="card-text"><strong>Date:</strong> ${item.reported_at}</p>
                                     <p class="card-text"><strong>Status:</strong> <span class="text-white ${item.status == "In Progress"?'badge bg-warning':'badge bg-success'}">${item.status}</span></p>
                                 </div>

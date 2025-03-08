@@ -193,7 +193,10 @@ class AlertController extends Controller
     public function GetActiveAlert()
     {
         $data = Incidents::whereIn('incidents.status', ['Pending', 'In Progress'])
-        ->where('user_id', Session::get('user_id'))->get();
-        return response()->json(['data' => $data,'status'=>true]);
+            ->where('user_id', Session::get('user_id'))
+            ->orderBy('id', 'desc') // Sort by ID in descending order
+            ->get();
+
+        return response()->json(['data' => $data, 'status' => true]);
     }
 }
