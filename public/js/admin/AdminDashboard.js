@@ -104,7 +104,7 @@ function DisplayData(incidentData) {
                     (location.emergency_contact_phone != null
                         ? location.emergency_contact_phone
                         : "") +
-                    "<br>Type: " +
+                    "<br>Emergency Type: " +
                     (location.incident_type != null
                         ? location.incident_type
                         : "") +
