@@ -127,6 +127,7 @@ async function checkUserLocation() {
                                     });
                                     resolve();
                                 } else {
+                                    GetActiveAlert();
                                     Swal.fire({
                                         toast: true,
                                         position: "top-end",
@@ -194,11 +195,11 @@ function SendManualAlert() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function (position) {
-                    // var userLat = position.coords.latitude;
-                    // var userLng = position.coords.longitude;
+                    var userLat = position.coords.latitude;
+                    var userLng = position.coords.longitude;
 
-                    var userLat = 10.678985;
-                    var userLng = 122.96208;
+                    // var userLat = 10.678985;
+                    // var userLng = 122.96208;
 
                     if (isInsideCustomBoundary(userLat, userLng)) {
                         let formData = new FormData();
@@ -229,6 +230,7 @@ function SendManualAlert() {
                                         timer: 1500,
                                     });
                                 } else {
+                                    GetActiveAlert();
                                     Swal.fire({
                                         toast: true,
                                         position: "top-end",
