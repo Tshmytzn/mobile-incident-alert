@@ -283,15 +283,27 @@ function showAlert() {
     alertData.forEach((item) => {
         // Create a new div element
         const newDiv = document.createElement("div");
+
+        const responderName = item.responder_name?.trim()
+            ? item.responder_name
+            : "No Responder";
         // Set the innerHTML of the new div
         newDiv.innerHTML = `
             <div class="col-12">
                             <div class="card border shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title">Type: ${item.type}</h5>
-                                    <p class="card-text"><strong>Responder:</strong> ${item.responder_name ? item.responder_name : "No Responder"}</p>
-                                    <p class="card-text"><strong>Date:</strong> ${item.reported_at}</p>
-                                    <p class="card-text"><strong>Status:</strong> <span class="text-white ${item.status == "In Progress"?'badge bg-warning':'badge bg-success'}">${item.status}</span></p>
+                                    <h5 class="card-title">Type: ${
+                                        item.type
+                                    }</h5>
+                                    <p class="card-text"><strong>Responder:</strong> ${responderName}</p>
+                                    <p class="card-text"><strong>Date:</strong> ${
+                                        item.reported_at
+                                    }</p>
+                                    <p class="card-text"><strong>Status:</strong> <span class="text-white ${
+                                        item.status == "In Progress"
+                                            ? "badge bg-warning"
+                                            : "badge bg-success"
+                                    }">${item.status}</span></p>
                                 </div>
                             </div>
                         </div>
