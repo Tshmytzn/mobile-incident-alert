@@ -30,5 +30,12 @@
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
         }
+        .table-hover tbody tr:hover {
+            background-color: #cef8d0;
+        }
+        .modal-head{
+            background-color: #00703C;
+            color: white;
+        }
     </style>
 </head>

@@ -46,7 +46,7 @@ function GetUserData() {
                 orderable: false,
                 searchable: false,
                 render: function (data, type, row) {
-                    return `<button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#updateuser" onclick="UpdateUserModal('${row.id}','${row.name}','${row.email}','${row.role}')">Action</button>`;
+                    return `<button class="btn btn-primary action-btn" data-bs-toggle="modal" data-bs-target="#updateuser" onclick="UpdateUserModal('${row.id}','${row.name}','${row.email}','${row.role}')"><i class="bi bi-pencil-square"></i></button>`;
                 },
             },
         ],
