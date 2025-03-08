@@ -290,7 +290,7 @@ function showAlert() {
                             <div class="card border shadow">
                                 <div class="card-body">
                                     <h5 class="card-title">Type: ${item.type}</h5>
-                                    <p class="card-text"><strong>Responder:</strong> ${item.responder_name == null ? "No Responder" : item.responder_name}</p>
+                                    <p class="card-text"><strong>Responder:</strong> ${item.responder_name == '' ? "No Responder" : item.responder_name}</p>
                                     <p class="card-text"><strong>Date:</strong> ${item.reported_at}</p>
                                     <p class="card-text"><strong>Status:</strong> <span class="text-white ${item.status == "In Progress"?'badge bg-warning':'badge bg-success'}">${item.status}</span></p>
                                 </div>
