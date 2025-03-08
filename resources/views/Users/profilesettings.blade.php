@@ -75,7 +75,8 @@
                                                     <div class="col-md-6">
                                                         <label class="form-label">Name</label>
                                                         <input type="text" class="form-control" name="profile-name"
-                                                            id="profile-name" placeholder="Enter your name" required>
+                                                            id="profile-name" placeholder="Enter your name" required
+                                                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Email</label>
@@ -135,7 +136,8 @@
                                                         <label class="form-label">Contact Name</label>
                                                         <input type="text" class="form-control"
                                                             placeholder="Emergency contact name"
-                                                            name="profile-contact-name" id="profile-contact-name">
+                                                            name="profile-contact-name" id="profile-contact-name"
+                                                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Contact Phone</label>

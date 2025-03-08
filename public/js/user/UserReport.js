@@ -4,17 +4,45 @@ function GetResponderData() {
         $("#userTable").DataTable().destroy();
     }
 
-    // Clear the table body to avoid duplicated data
+    // Clear table body
     $("#userTable tbody").empty();
 
-    // Reinitialize DataTable with server-side pagination & searching
+    // Reinitialize DataTable with styling
     $("#userTable").DataTable({
         processing: true,
-        serverSide: true, // Enable server-side processing
+        serverSide: true,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: "copyHtml5",
+                text: "Copy",
+                className: "btn btn-secondary",
+            },
+            {
+                extend: "excelHtml5",
+                text: "Excel",
+                className: "btn btn-success",
+            },
+            {
+                extend: "csvHtml5",
+                text: "CSV",
+                className: "btn btn-info",
+            },
+            {
+                extend: "pdfHtml5",
+                text: "PDF",
+                className: "btn btn-danger",
+            },
+            {
+                extend: "print",
+                text: "Print",
+                className: "btn btn-primary",
+            },
+        ],
         ajax: function (data, callback) {
             let url = `/user-get-alert?start=${data.start}&length=${data.length}&draw=${data.draw}`;
             if (data.search.value) {
-                url += `&search[value]=${data.search.value}`; // Append search query
+                url += `&search[value]=${data.search.value}`;
             }
 
             sendRequest("GET", url, null, function (error, response) {
@@ -39,7 +67,26 @@ function GetResponderData() {
         columns: [
             { data: "type" },
             { data: "reported_at" },
-            { data: "status" },
+            {
+                data: "status",
+                render: function (data, type, row) {
+                    let badgeClass = "";
+                    switch (data.toLowerCase()) {
+                        case "in progress":
+                            badgeClass = " badge bg-warning text-white";
+                            break;
+                        case "assigned":
+                            badgeClass = "text-white badge bg-primary";
+                            break;
+                        case "resolved":
+                            badgeClass = "text-white badge bg-success";
+                            break;
+                        default:
+                            badgeClass = "text-white badge bg-secondary";
+                    }
+                    return `<span class="${badgeClass}">${data}</span>`;
+                },
+            },
         ],
     });
 }
