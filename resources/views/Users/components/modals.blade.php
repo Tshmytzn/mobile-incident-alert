@@ -3,7 +3,7 @@
     aria-labelledby="responderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-head">
                 <h5 class="modal-title" id="responderModalLabel">Set New Password</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -53,7 +53,7 @@
     aria-labelledby="uploadProfilePicLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-head">
                 <h5 class="modal-title" id="uploadProfilePicLabel">Upload Profile Picture</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

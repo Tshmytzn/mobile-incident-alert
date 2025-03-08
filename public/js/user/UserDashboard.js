@@ -145,7 +145,7 @@ async function checkUserLocation() {
                             toast: true,
                             position: "top-end",
                             icon: "error",
-                            title: "❌ You are OUTSIDE the custom range.",
+                            title: "You're outside La Salle Bacolod campus.",
                             showConfirmButton: false,
                             timer: 1500,
                         });

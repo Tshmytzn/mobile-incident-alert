@@ -32,5 +32,9 @@
         .table-hover tbody tr:hover {
             background-color: #cef8d0;
         }
+        .modal-head{
+            background-color: #00703C;
+            color: white;
+        }
     </style>
 </head>

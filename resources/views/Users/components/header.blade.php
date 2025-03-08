@@ -52,21 +52,36 @@
                         <span class="avatar avatar-sm" style="background-image: url('{{ $profilePicture }}')">
                         </span>
                         <div class="d-none d-xl-block ps-2">
-                            <div>{{ $user->name }}</div>
+                            <div class="d-block d-xl-none fw-bold">{{ $user->name }}</div>
+                            <div class="d-none d-xl-block">{{ $user->name }}</div>
                             <div class="mt-1 small text-secondary">{{ $user->role }}</div>
                         </div>
-                    @else
-                        <div>User not found.</div>
-                    @endif
-
-
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <!-- User Info Section -->
+                    @if ($user)
+                        <div class="dropdown-header text-center d-flex align-items-center"
+                            style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            <!-- User Profile Picture -->
+                            <span class="avatar avatar-md me-2"
+                                style="background-image: url('{{ $profilePicture }}'); width: 40px; height: 40px; border-radius: 50%;">
+                            </span>
+                            <div class="text-start">
+                                <strong id="user-name">{{ $user->name }}</strong> <br>
+                                <small id="user-role" class="text-muted">{{ ucfirst($user->role) }}</small>
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Menu Items -->
                     <a href="/profilesettings" class="dropdown-item">Settings</a>
                     <a data-bs-target="#logoutModal" data-bs-toggle="modal" class="dropdown-item text-danger">Logout</a>
                 </div>
-
+            @else
+                <div>User not found.</div>
+                @endif
             </div>
+
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
 
