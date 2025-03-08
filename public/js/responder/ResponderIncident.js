@@ -123,7 +123,7 @@ function DataTable(data) {
         // Create a new div for Bootstrap grid layout
         const cardWrapper = document.createElement("div");
         cardWrapper.className =
-            "col-lg-4 col-md-6 col-12 d-flex justify-content-center"; // Responsive layout
+            "col-lg-4 col-12 d-flex justify-content-center"; // Responsive layout
 
         // Create card
         cardWrapper.innerHTML = `
