@@ -14,6 +14,7 @@
     <link href="./dist/css/demo.min.css?1692870487" rel="stylesheet" />
     {{-- datatables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Leaflet JS & CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />

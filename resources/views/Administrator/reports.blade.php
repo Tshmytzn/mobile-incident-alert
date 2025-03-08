@@ -62,51 +62,89 @@
     <script src="{{ asset('js/RequestScript.js') }}"></script>
     <script>
         function DataTable() {
-    sendRequest("GET", "/get-solve-incidents", null, function (error, response) {
-        if (error) {
-            console.error("Pagination Error:", error);
-            return;
-        }
+            sendRequest("GET", "/get-solve-incidents", null, function(error, response) {
+                if (error) {
+                    console.error("Pagination Error:", error);
+                    return;
+                }
 
-        const responseMessage =
-            typeof response === "string" ? JSON.parse(response) : response;
+                const responseMessage =
+                    typeof response === "string" ? JSON.parse(response) : response;
 
-        let data = responseMessage.data || [];
+                let data = responseMessage.data || [];
 
-        // Destroy existing DataTable if it exists
-        if ($.fn.DataTable.isDataTable("#userTable")) {
-            $("#userTable").DataTable().destroy();
-        }
+                // Destroy existing DataTable if it exists
+                if ($.fn.DataTable.isDataTable("#userTable")) {
+                    $("#userTable").DataTable().destroy();
+                }
 
-        // Clear the table body to avoid duplicated data
-        $("#userTable tbody").empty();
+                // Clear the table body to avoid duplicated data
+                $("#userTable tbody").empty();
 
-        // Initialize DataTable with fetched data
-        $("#userTable").DataTable({
-            data: data,
-            columns: [
-                { data: "type" },
-                { data: "name" },
-                { data: "phone_number" },
-                { data: "role" },
-                { data: "emergency_contact_phone" },
-                {
-                    data: null,
-                    orderable: false,
-                    searchable: false,
-                    render: function (data, type, row) {
-                        return `${row.responder_name} (${row.responder_type})`
+                // Initialize DataTable with fetched data
+                $("#userTable").DataTable({
+                    data: data,
+                    dom: 'Bfrtip',
+                    buttons: [{
+                            extend: "copyHtml5",
+                            text: "Copy",
+                            className: "btn btn-secondary",
                         },
-                },
-                { data: "status" },
-            ],
-        });
-    });
-}
+                        {
+                            extend: "excelHtml5",
+                            text: "Excel",
+                            className: "btn btn-success",
+                        },
+                        {
+                            extend: "csvHtml5",
+                            text: "CSV",
+                            className: "btn btn-info",
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            text: "PDF",
+                            className: "btn btn-danger",
+                        },
+                        {
+                            extend: "print",
+                            text: "Print",
+                            className: "btn btn-primary",
+                        },
+                    ],
+                    columns: [{
+                            data: "type"
+                        },
+                        {
+                            data: "name"
+                        },
+                        {
+                            data: "phone_number"
+                        },
+                        {
+                            data: "role"
+                        },
+                        {
+                            data: "emergency_contact_phone"
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            render: function(data, type, row) {
+                                return `${row.responder_name} (${row.responder_type})`
+                            },
+                        },
+                        {
+                            data: "status"
+                        },
+                    ],
+                });
+            });
+        }
 
-$(document).ready(function () {
-    DataTable();
-});
+        $(document).ready(function() {
+            DataTable();
+        });
     </script>
 
 
