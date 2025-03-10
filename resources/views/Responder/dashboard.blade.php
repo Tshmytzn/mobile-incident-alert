@@ -250,7 +250,7 @@
         </div>
     </div>
     @include('Responder.components.scripts')
-    <script src="{{ asset('js/Responder/ResponderIncident.js') }}"></script>
+    <script src="{{ asset('js/responder/ResponderIncident.js') }}"></script>
 
 </body>
 

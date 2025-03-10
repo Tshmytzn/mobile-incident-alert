@@ -70,6 +70,8 @@ class AdminController extends Controller
             });
         }
 
+        $query->orderBy('created_at', 'desc');
+
         // Handle pagination
         $perPage = $request->input('length', 10); // Number of records per page
         $start = $request->input('start', 0); // Offset
@@ -146,6 +148,8 @@ class AdminController extends Controller
                 ->orWhere('type', 'like', "%{$search}%");
             });
         }
+
+        $query->orderBy('created_at', 'desc');
 
         // Handle pagination
         $perPage = $request->input('length', 10); // Number of records per page

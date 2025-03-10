@@ -26,17 +26,17 @@
                             </h2>
                         </div>
 
-                        <div class="mt-5">
+                        <div>
                             <table id="userTable" class="table table-hover ">
                                 <thead>
                                     <tr>
-                                        <th>Emergency Type</th>
-                                        <th>Name</th>
-                                        <th>Number</th>
-                                        <th>Role</th>
-                                        <th>Emergency Contact</th>
-                                        <th>Assigned</th>
-                                        <th>Status</th>
+                                        <th style="background-color: #00703C; color: white;">Emergency Type</th>
+                                        <th style="background-color: #00703C; color: white;">Name</th>
+                                        <th style="background-color: #00703C; color: white;">Number</th>
+                                        <th style="background-color: #00703C; color: white;">Role</th>
+                                        <th style="background-color: #00703C; color: white;">Emergency Contact</th>
+                                        <th style="background-color: #00703C; color: white;">Assigned</th>
+                                        <th style="background-color: #00703C; color: white;">Status</th>
                                     </tr>
                                 </thead>
                             </table>
