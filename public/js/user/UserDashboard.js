@@ -1,3 +1,20 @@
+document.getElementById("swipe").addEventListener("shown.bs.modal", function () {
+    document.getElementById("swipeBtn").focus(); // Move focus only when modal is open
+});
+
+document.getElementById("swipe").addEventListener("shown.bs.modal", function () {
+    this.removeAttribute("inert");
+});
+
+document.getElementById("swipe").addEventListener("hidden.bs.modal", function () {
+    this.setAttribute("inert", "");
+});
+document.getElementById("swipe").addEventListener("hidden.bs.modal", function () {
+    document.activeElement.blur(); // Remove focus when modal closes
+});
+
+
+
 const swipeBtn = document.getElementById("swipeBtn");
 const container = document.querySelector(".swipe-container");
 let isDragging = false,
