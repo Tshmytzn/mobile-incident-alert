@@ -143,7 +143,7 @@
 
 
 <div class="modal fade" id="swipe" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="responderModalLabel" aria-hidden="true">
+    aria-labelledby="responderModalLabel" hidden inert>
     <div class="modal-dialog modal-fullscreen" id="modal-dialogs">
         <div class="modal-content" id="modal-contents">
 
