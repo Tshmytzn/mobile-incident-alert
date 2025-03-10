@@ -57,7 +57,7 @@
 //     document.removeEventListener("touchend", endDrag);
 // }
 let heartLoader = document.getElementById("overlay-mia");
-function sendAlertNow(){
+function sendAlertNow() {
     Swal.fire({
         title: "Are you sure?",
         text: "Click Yes to confirm or No to cancel.",
@@ -69,10 +69,8 @@ function sendAlertNow(){
         if (result.isConfirmed) {
             checkUserLocation();
         } else {
-
         }
     });
-
 }
 
 
