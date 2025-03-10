@@ -59,148 +59,48 @@ document.getElementById("swipe").addEventListener("shown.bs.modal", function () 
         }
 
         // Function to check if the user's location is inside the defined boundary
-        function isInsideCustomBoundary(userLat, userLng) {
-            var userPoint = L.latLng(userLat, userLng); // test current location
+        
+    });
 
-            var customBoundary = [
-                [10.6797, 122.961], // Point 1 la salle
-                [10.6806, 122.9627], // Point 2 right corner
-                [10.6797, 122.9635], // Point 2 right corner
-                [10.6788, 122.9646], // Point 3
-                [10.6783, 122.9649], // Point 3
-                [10.6776, 122.964], // Point 3
-                [10.6765, 122.9627], // Point 4
-                [10.6769, 122.9626], // Point 5
-                [10.6775, 122.9618], // Point 6
-                [10.6778, 122.9616], // Point 6
-                [10.6779, 122.9611], // Point 6
-                [10.6782, 122.9607], // Point 6 plus
-                [10.6785, 122.9607], // Point 6 man
-                [10.679, 122.9609], // Point 6 creeck
-                [10.6795, 122.961], // Closing point (same as first)
-            ];
+    function isInsideCustomBoundary(userLat, userLng) {
+        var userPoint = L.latLng(userLat, userLng); // test current location
 
-            // Convert customBoundary to a Leaflet polygon
-            var boundaryPolygon = L.polygon(customBoundary);
+        var customBoundary = [
+            [10.6797, 122.961], // Point 1 la salle
+            [10.6806, 122.9627], // Point 2 right corner
+            [10.6797, 122.9635], // Point 2 right corner
+            [10.6788, 122.9646], // Point 3
+            [10.6783, 122.9649], // Point 3
+            [10.6776, 122.964], // Point 3
+            [10.6765, 122.9627], // Point 4
+            [10.6769, 122.9626], // Point 5
+            [10.6775, 122.9618], // Point 6
+            [10.6778, 122.9616], // Point 6
+            [10.6779, 122.9611], // Point 6
+            [10.6782, 122.9607], // Point 6 plus
+            [10.6785, 122.9607], // Point 6 man
+            [10.679, 122.9609], // Point 6 creeck
+            [10.6795, 122.961], // Closing point (same as first)
+        ];
 
-            // Check if the user's location is inside the boundary
-            return boundaryPolygon.getBounds().contains(userPoint);
-        }
+        // Convert customBoundary to a Leaflet polygon
+        var boundaryPolygon = L.polygon(customBoundary);
 
-        // Function to get user's current location
-        async function checkUserLocation() {
-            return new Promise((resolve) => {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        function (position) {
-                            var userLat = position.coords.latitude;
-                            var userLng = position.coords.longitude;
+        // Check if the user's location is inside the boundary
+        return boundaryPolygon.getBounds().contains(userPoint);
+    }
 
-                            // var userLat = 10.678985;
-                            // var userLng = 122.96208;
-
-                            if (isInsideCustomBoundary(userLat, userLng)) {
-                                let formData = new FormData();
-                                formData.append("lat", userLat);
-                                formData.append("lng", userLng);
-                                let csrfToken = document
-                                    .querySelector('meta[name="csrf-token"]')
-                                    .getAttribute("content");
-                                formData.append("_token", csrfToken);
-
-                                sendRequest(
-                                    "POST",
-                                    "/user-send-alert",
-                                    formData,
-                                    function (error, response) {
-                                        const responseMessage =
-                                            typeof response === "string"
-                                                ? JSON.parse(response)
-                                                : response;
-                                        if (!responseMessage.status) {
-                                            Swal.fire({
-                                                toast: true,
-                                                position: "top-end",
-                                                icon: "error",
-                                                title: responseMessage.message,
-                                                showConfirmButton: false,
-                                                timer: 1500,
-                                            });
-                                            resolve();
-                                        } else {
-                                            GetActiveAlert();
-                                            Swal.fire({
-                                                toast: true,
-                                                position: "top-end",
-                                                icon: "success",
-                                                title: responseMessage.message,
-                                                showConfirmButton: false,
-                                                timer: 1500,
-                                            });
-                                            resolve();
-                                        }
-                                    }
-                                );
-                            } else {
-                                Swal.fire({
-                                    toast: true,
-                                    position: "top-end",
-                                    icon: "error",
-                                    title: "You're outside La Salle Bacolod campus.",
-                                    showConfirmButton: false,
-                                    timer: 1500,
-                                });
-                                resolve();
-                            }
-                        },
-                        function (error) {
-                            Swal.fire({
-                                toast: true,
-                                position: "top-end",
-                                icon: "error",
-                                title:
-                                    "Error getting location: " + error.message,
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                            resolve();
-                        }
-                    );
-                } else {
-                    Swal.fire({
-                        toast: true,
-                        position: "top-end",
-                        icon: "error",
-                        title: "Geolocation is not supported by your browser.",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    resolve();
-                }
-            });
-        }
-
-        function SendManualAlert() {
-            let typeVal = document.getElementById("emergencyType").value;
-            if (typeVal.trim() == "") {
-                Swal.fire({
-                    toast: true,
-                    position: "top-end",
-                    icon: "error",
-                    title: "Select Alert Type",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                return;
-            }
+    // Function to get user's current location
+    async function checkUserLocation() {
+        return new Promise((resolve) => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function (position) {
-                        // var userLat = position.coords.latitude;
-                        // var userLng = position.coords.longitude;
+                        var userLat = position.coords.latitude;
+                        var userLng = position.coords.longitude;
 
-                        var userLat = 10.678985;
-                        var userLng = 122.96208;
+                        // var userLat = 10.678985;
+                        // var userLng = 122.96208;
 
                         if (isInsideCustomBoundary(userLat, userLng)) {
                             let formData = new FormData();
@@ -209,12 +109,11 @@ document.getElementById("swipe").addEventListener("shown.bs.modal", function () 
                             let csrfToken = document
                                 .querySelector('meta[name="csrf-token"]')
                                 .getAttribute("content");
-                            formData.append("type", typeVal);
                             formData.append("_token", csrfToken);
 
                             sendRequest(
                                 "POST",
-                                "/user-send-manual-alert",
+                                "/user-send-alert",
                                 formData,
                                 function (error, response) {
                                     const responseMessage =
@@ -230,6 +129,7 @@ document.getElementById("swipe").addEventListener("shown.bs.modal", function () 
                                             showConfirmButton: false,
                                             timer: 1500,
                                         });
+                                        resolve();
                                     } else {
                                         GetActiveAlert();
                                         Swal.fire({
@@ -240,9 +140,7 @@ document.getElementById("swipe").addEventListener("shown.bs.modal", function () 
                                             showConfirmButton: false,
                                             timer: 1500,
                                         });
-                                        document.getElementById(
-                                            "emergencyType"
-                                        ).value = "";
+                                        resolve();
                                     }
                                 }
                             );
@@ -251,7 +149,7 @@ document.getElementById("swipe").addEventListener("shown.bs.modal", function () 
                                 toast: true,
                                 position: "top-end",
                                 icon: "error",
-                                title: "❌ You are OUTSIDE the custom range.",
+                                title: "You're outside La Salle Bacolod campus.",
                                 showConfirmButton: false,
                                 timer: 1500,
                             });
@@ -267,30 +165,133 @@ document.getElementById("swipe").addEventListener("shown.bs.modal", function () 
                             showConfirmButton: false,
                             timer: 1500,
                         });
+                        resolve();
                     }
                 );
+            } else {
+                Swal.fire({
+                    toast: true,
+                    position: "top-end",
+                    icon: "error",
+                    title: "Geolocation is not supported by your browser.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                resolve();
             }
-        }
-        let alertData = null;
-        async function GetActiveAlert() {
-            const alert = await GetRequest("/user-get-active-alert");
-            document.getElementById("countAlert").textContent =
-                alert.data.length;
-            alertData = alert.data;
-        }
+        });
+    }
 
-        function showAlert() {
-            const divNot = document.getElementById("card-to-show");
-            divNot.innerHTML = "";
-            alertData.forEach((item) => {
-                // Create a new div element
-                const newDiv = document.createElement("div");
+    function SendManualAlert() {
+        let typeVal = document.getElementById("emergencyType").value;
+        if (typeVal.trim() == "") {
+            Swal.fire({
+                toast: true,
+                position: "top-end",
+                icon: "error",
+                title: "Select Alert Type",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            return;
+        }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    // var userLat = position.coords.latitude;
+                    // var userLng = position.coords.longitude;
 
-                const responderName = item.responder_name?.trim()
-                    ? item.responder_name
-                    : "No Responder";
-                // Set the innerHTML of the new div
-                newDiv.innerHTML = `
+                    var userLat = 10.678985;
+                    var userLng = 122.96208;
+
+                    if (isInsideCustomBoundary(userLat, userLng)) {
+                        let formData = new FormData();
+                        formData.append("lat", userLat);
+                        formData.append("lng", userLng);
+                        let csrfToken = document
+                            .querySelector('meta[name="csrf-token"]')
+                            .getAttribute("content");
+                        formData.append("type", typeVal);
+                        formData.append("_token", csrfToken);
+
+                        sendRequest(
+                            "POST",
+                            "/user-send-manual-alert",
+                            formData,
+                            function (error, response) {
+                                const responseMessage =
+                                    typeof response === "string"
+                                        ? JSON.parse(response)
+                                        : response;
+                                if (!responseMessage.status) {
+                                    Swal.fire({
+                                        toast: true,
+                                        position: "top-end",
+                                        icon: "error",
+                                        title: responseMessage.message,
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                    });
+                                } else {
+                                    GetActiveAlert();
+                                    Swal.fire({
+                                        toast: true,
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: responseMessage.message,
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                    });
+                                    document.getElementById(
+                                        "emergencyType"
+                                    ).value = "";
+                                }
+                            }
+                        );
+                    } else {
+                        Swal.fire({
+                            toast: true,
+                            position: "top-end",
+                            icon: "error",
+                            title: "❌ You are OUTSIDE the custom range.",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        resolve();
+                    }
+                },
+                function (error) {
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        icon: "error",
+                        title: "Error getting location: " + error.message,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            );
+        }
+    }
+    let alertData = null;
+    async function GetActiveAlert() {
+        const alert = await GetRequest("/user-get-active-alert");
+        document.getElementById("countAlert").textContent = alert.data.length;
+        alertData = alert.data;
+    }
+
+    function showAlert() {
+        const divNot = document.getElementById("card-to-show");
+        divNot.innerHTML = "";
+        alertData.forEach((item) => {
+            // Create a new div element
+            const newDiv = document.createElement("div");
+
+            const responderName = item.responder_name?.trim()
+                ? item.responder_name
+                : "No Responder";
+            // Set the innerHTML of the new div
+            newDiv.innerHTML = `
             <div class="col-12">
                             <div class="card border shadow">
                                 <div class="card-body">
@@ -311,12 +312,11 @@ document.getElementById("swipe").addEventListener("shown.bs.modal", function () 
                         </div>
         `;
 
-                // Append the new div to the div-not
-                divNot.appendChild(newDiv);
-            });
-        }
-
-        $(document).ready(function () {
-            GetActiveAlert();
+            // Append the new div to the div-not
+            divNot.appendChild(newDiv);
         });
+    }
+
+    $(document).ready(function () {
+        GetActiveAlert();
     });
