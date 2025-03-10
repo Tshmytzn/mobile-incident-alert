@@ -152,7 +152,7 @@
 <body>
     <script src="./dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page">
-
+        @include('HeartLoader')
         @include('Users.components.aside')
         @include('Users.components.header')
 
@@ -167,8 +167,8 @@
                                     <div class="d-flex align-items-stretch">
                                         <button
                                             class="btn btn-danger btn-lg flex-grow-1 rounded-start-pill fw-bold py-5"
-                                            data-bs-target="#swipe" data-bs-toggle="modal"
-                                            style="font-size: 2.5rem; transition: 0.3s ease;">
+                                            {{-- data-bs-target="#swipe" data-bs-toggle="modal" --}}
+                                            style="font-size: 2.5rem; transition: 0.3s ease;" onclick="sendAlertNow()">
                                             <span class="me-3 ms-4">Alert</span>
                                             <i class="bi bi-exclamation-triangle-fill fs-1"></i>
                                         </button>
