@@ -1,80 +1,71 @@
-document.getElementById("swipe").addEventListener("shown.bs.modal", function () {
-    document.getElementById("swipeBtn").focus(); // Move focus only when modal is open
-});
+document
+    .getElementById("swipe")
+    .addEventListener("shown.bs.modal", function () {
+        const swipeBtn = document.getElementById("swipeBtn");
+        const container = document.querySelector(".swipe-container");
 
-document.getElementById("swipe").addEventListener("shown.bs.modal", function () {
-    this.removeAttribute("inert");
-});
+        if (!swipeBtn || !container) {
+            console.error("Element not found!");
+            return;
+        }
 
-document.getElementById("swipe").addEventListener("hidden.bs.modal", function () {
-    this.setAttribute("inert", "");
-});
-document.getElementById("swipe").addEventListener("hidden.bs.modal", function () {
-    document.activeElement.blur(); // Remove focus when modal closes
-});
+        let isDragging = false,
+            startX = 0,
+            currentX = 0,
+            initialLeft = 125;
 
+        swipeBtn.addEventListener("mousedown", startDrag);
+        swipeBtn.addEventListener("touchstart", startDrag);
 
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.touches ? e.touches[0].clientX : e.clientX;
+            document.addEventListener("mousemove", moveDrag);
+            document.addEventListener("mouseup", endDrag);
+            document.addEventListener("touchmove", moveDrag);
+            document.addEventListener("touchend", endDrag);
+        }
 
-const swipeBtn = document.getElementById("swipeBtn");
-const container = document.querySelector(".swipe-container");
-let isDragging = false,
-    startX = 0,
-    currentX = 0,
-    initialLeft = 125;
+        function moveDrag(e) {
+            if (!isDragging) return;
+            currentX = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
+            let newLeft = initialLeft + currentX;
 
-swipeBtn.addEventListener("mousedown", startDrag);
-swipeBtn.addEventListener("touchstart", startDrag);
+            if (newLeft <= 5) {
+                swipeBtn.style.left = "5px";
+                container.style.background = "#dc3545"; // Red for cancel
+                swipeBtn.innerHTML = "✖";
+            } else if (newLeft >= 245) {
+                swipeBtn.style.left = "245px";
+                container.style.background = "#28a745"; // Green for unlock
+                swipeBtn.innerHTML = "✔";
+            } else {
+                swipeBtn.style.left = `${newLeft}px`;
+                container.style.background = "#e9ecef";
+                swipeBtn.innerHTML = "↔";
+            }
+        }
 
-function startDrag(e) {
-    isDragging = true;
-    startX = e.touches ? e.touches[0].clientX : e.clientX;
-    document.addEventListener("mousemove", moveDrag);
-    document.addEventListener("mouseup", endDrag);
-    document.addEventListener("touchmove", moveDrag);
-    document.addEventListener("touchend", endDrag);
-}
+        async function endDrag() {
+            isDragging = false;
+            let finalLeft = parseInt(swipeBtn.style.left);
 
-function moveDrag(e) {
-    if (!isDragging) return;
-    currentX = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
-    let newLeft = initialLeft + currentX;
+            if (finalLeft <= 5) {
+                $("#swipe").modal("hide");
+            } else if (finalLeft >= 245) {
+                await checkUserLocation();
+                $("#swipe").modal("hide");
+            }
 
-    if (newLeft <= 5) {
-        swipeBtn.style.left = "5px";
-        container.style.background = "#dc3545"; // Red for cancel
-        swipeBtn.innerHTML = "✖";
-    } else if (newLeft >= 245) {
-        swipeBtn.style.left = "245px";
-        container.style.background = "#28a745"; // Green for unlock
-        swipeBtn.innerHTML = "✔";
-    } else {
-        swipeBtn.style.left = `${newLeft}px`;
-        container.style.background = "#e9ecef";
-        swipeBtn.innerHTML = "↔";
-    }
-}
-
-async function endDrag() {
-    isDragging = false;
-    let finalLeft = parseInt(swipeBtn.style.left);
-
-    if (finalLeft <= 5) {
-        $("#swipe").modal("hide");
-    } else if (finalLeft >= 245) {
-        await checkUserLocation();
-        $("#swipe").modal("hide");
-    }
-
-    swipeBtn.style.left = "125px"; // Reset to center
-    swipeBtn.innerHTML = "↔";
-    container.style.background = "#e9ecef";
-    document.removeEventListener("mousemove", moveDrag);
-    document.removeEventListener("mouseup", endDrag);
-    document.removeEventListener("touchmove", moveDrag);
-    document.removeEventListener("touchend", endDrag);
-}
-
-
+            swipeBtn.style.left = "125px"; // Reset to center
+            swipeBtn.innerHTML = "↔";
+            container.style.background = "#e9ecef";
+            document.removeEventListener("mousemove", moveDrag);
+            document.removeEventListener("mouseup", endDrag);
+            document.removeEventListener("touchmove", moveDrag);
+            document.removeEventListener("touchend", endDrag);
+        }
+    });
 
 
 // Function to check if the user's location is inside the defined boundary
