@@ -67,6 +67,7 @@ function sendAlertNow() {
         cancelButtonText: "No",
     }).then((result) => {
         if (result.isConfirmed) {
+            heartLoader.style.display = "flex";
             checkUserLocation();
         } else {
         }
@@ -116,7 +117,6 @@ async function checkUserLocation() {
                     // var userLng = 122.96208;
 
                     if (isInsideCustomBoundary(userLat, userLng)) {
-                        heartLoader.style.display = "flex";
                         let formData = new FormData();
                         formData.append("lat", userLat);
                         formData.append("lng", userLng);
