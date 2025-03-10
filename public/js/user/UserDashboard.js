@@ -1,71 +1,79 @@
-document
-    .getElementById("swipe")
-    .addEventListener("shown.bs.modal", function () {
-        const swipeBtn = document.getElementById("swipeBtn");
-        const container = document.querySelector(".swipe-container");
+// const swipeBtn = document.getElementById("swipeBtn");
+// const container = document.querySelector(".swipe-container");
+// let isDragging = false,
+//     startX = 0,
+//     currentX = 0,
+//     initialLeft = 125;
 
-        if (!swipeBtn || !container) {
-            console.error("Element not found!");
-            return;
-        }
+// swipeBtn.addEventListener("mousedown", startDrag);
+// swipeBtn.addEventListener("touchstart", startDrag);
 
-        let isDragging = false,
-            startX = 0,
-            currentX = 0,
-            initialLeft = 125;
+// function startDrag(e) {
+//     isDragging = true;
+//     startX = e.touches ? e.touches[0].clientX : e.clientX;
+//     document.addEventListener("mousemove", moveDrag);
+//     document.addEventListener("mouseup", endDrag);
+//     document.addEventListener("touchmove", moveDrag);
+//     document.addEventListener("touchend", endDrag);
+// }
 
-        swipeBtn.addEventListener("mousedown", startDrag);
-        swipeBtn.addEventListener("touchstart", startDrag);
+// function moveDrag(e) {
+//     if (!isDragging) return;
+//     currentX = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
+//     let newLeft = initialLeft + currentX;
 
-        function startDrag(e) {
-            isDragging = true;
-            startX = e.touches ? e.touches[0].clientX : e.clientX;
-            document.addEventListener("mousemove", moveDrag);
-            document.addEventListener("mouseup", endDrag);
-            document.addEventListener("touchmove", moveDrag);
-            document.addEventListener("touchend", endDrag);
-        }
+//     if (newLeft <= 5) {
+//         swipeBtn.style.left = "5px";
+//         container.style.background = "#dc3545"; // Red for cancel
+//         swipeBtn.innerHTML = "✖";
+//     } else if (newLeft >= 245) {
+//         swipeBtn.style.left = "245px";
+//         container.style.background = "#28a745"; // Green for unlock
+//         swipeBtn.innerHTML = "✔";
+//     } else {
+//         swipeBtn.style.left = `${newLeft}px`;
+//         container.style.background = "#e9ecef";
+//         swipeBtn.innerHTML = "↔";
+//     }
+// }
 
-        function moveDrag(e) {
-            if (!isDragging) return;
-            currentX = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
-            let newLeft = initialLeft + currentX;
+// async function endDrag() {
+//     isDragging = false;
+//     let finalLeft = parseInt(swipeBtn.style.left);
 
-            if (newLeft <= 5) {
-                swipeBtn.style.left = "5px";
-                container.style.background = "#dc3545"; // Red for cancel
-                swipeBtn.innerHTML = "✖";
-            } else if (newLeft >= 245) {
-                swipeBtn.style.left = "245px";
-                container.style.background = "#28a745"; // Green for unlock
-                swipeBtn.innerHTML = "✔";
-            } else {
-                swipeBtn.style.left = `${newLeft}px`;
-                container.style.background = "#e9ecef";
-                swipeBtn.innerHTML = "↔";
-            }
-        }
+//     if (finalLeft <= 5) {
+//         $("#swipe").modal("hide");
+//     } else if (finalLeft >= 245) {
+//         await checkUserLocation();
+//         $("#swipe").modal("hide");
+//     }
 
-        async function endDrag() {
-            isDragging = false;
-            let finalLeft = parseInt(swipeBtn.style.left);
+//     swipeBtn.style.left = "125px"; // Reset to center
+//     swipeBtn.innerHTML = "↔";
+//     container.style.background = "#e9ecef";
+//     document.removeEventListener("mousemove", moveDrag);
+//     document.removeEventListener("mouseup", endDrag);
+//     document.removeEventListener("touchmove", moveDrag);
+//     document.removeEventListener("touchend", endDrag);
+// }
+let heartLoader = document.getElementById("overlay-mia");
+function sendAlertNow(){
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Click Yes to confirm or No to cancel.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            checkUserLocation();
+        } else {
 
-            if (finalLeft <= 5) {
-                $("#swipe").modal("hide");
-            } else if (finalLeft >= 245) {
-                await checkUserLocation();
-                $("#swipe").modal("hide");
-            }
-
-            swipeBtn.style.left = "125px"; // Reset to center
-            swipeBtn.innerHTML = "↔";
-            container.style.background = "#e9ecef";
-            document.removeEventListener("mousemove", moveDrag);
-            document.removeEventListener("mouseup", endDrag);
-            document.removeEventListener("touchmove", moveDrag);
-            document.removeEventListener("touchend", endDrag);
         }
     });
+
+}
 
 
 // Function to check if the user's location is inside the defined boundary
@@ -110,7 +118,7 @@ async function checkUserLocation() {
                     // var userLng = 122.96208;
 
                     if (isInsideCustomBoundary(userLat, userLng)) {
-                
+                        heartLoader.style.display = "flex";
                         let formData = new FormData();
                         formData.append("lat", userLat);
                         formData.append("lng", userLng);
@@ -133,6 +141,7 @@ async function checkUserLocation() {
                                         showConfirmButton: false,
                                         timer: 1500,
                                     });
+                                    heartLoader.style.display = "none";
                                     resolve();
                                 } else {
                                     GetActiveAlert();
@@ -144,6 +153,7 @@ async function checkUserLocation() {
                                         showConfirmButton: false,
                                         timer: 1500,
                                     });
+                                    heartLoader.style.display = "none";
                                     resolve();
                                 }
                             }
@@ -158,6 +168,7 @@ async function checkUserLocation() {
                             showConfirmButton: false,
                             timer: 1500,
                         });
+                        heartLoader.style.display = "none";
                         resolve();
                     }
                 },
@@ -170,6 +181,7 @@ async function checkUserLocation() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    heartLoader.style.display = "none";
                     resolve();
                 }
             );
@@ -182,6 +194,7 @@ async function checkUserLocation() {
                 showConfirmButton: false,
                 timer: 1500,
             });
+            heartLoader.style.display = "none";
             resolve();
         }
     });
@@ -200,6 +213,7 @@ function SendManualAlert() {
         });
         return;
     }
+    heartLoader.style.display = "flex";
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function (position) {
@@ -237,6 +251,7 @@ function SendManualAlert() {
                                         showConfirmButton: false,
                                         timer: 1500,
                                     });
+                                    heartLoader.style.display = "none";
                                 } else {
                                     GetActiveAlert();
                                     Swal.fire({
@@ -247,6 +262,7 @@ function SendManualAlert() {
                                         showConfirmButton: false,
                                         timer: 1500,
                                     });
+                                    heartLoader.style.display = "none";
                                     document.getElementById(
                                         "emergencyType"
                                     ).value = "";
@@ -262,6 +278,7 @@ function SendManualAlert() {
                             showConfirmButton: false,
                             timer: 1500,
                         });
+                        heartLoader.style.display = "none";
                         resolve();
                     }
                 },
@@ -274,6 +291,7 @@ function SendManualAlert() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    heartLoader.style.display = "none";
                 }
             );
         }
