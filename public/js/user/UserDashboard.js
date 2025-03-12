@@ -246,6 +246,8 @@ function startCountdown() {
             ManualAlertIcon.style.display = "flex";
             ManualAlertBtn.disabled = false;
             localStorage.setItem("checkTmer", "false");
+            let check = localStorage.getItem("checkTmer");
+            console.log(check);
         } else {
             timer--;
         }
@@ -256,7 +258,8 @@ function startCountdown() {
 $(document).ready(function () {
     GetActiveAlert();
     let check = localStorage.getItem("checkTmer");
-    if(check){
+    if(check === "true"){
+        console.log(check);
         startCountdown();
     }
 });
