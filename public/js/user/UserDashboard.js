@@ -56,7 +56,80 @@
 //     document.removeEventListener("touchmove", moveDrag);
 //     document.removeEventListener("touchend", endDrag);
 // }
+// Cache DOM elements
 let heartLoader = document.getElementById("overlay-mia");
+let emergencyTypeInput = document.getElementById("emergencyType");
+let countAlert = document.getElementById("countAlert");
+let cardToShow = document.getElementById("card-to-show");
+let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+
+// Predefine the polygon boundary to avoid re-creating it
+const customBoundary = [
+    [10.6797, 122.961], [10.6806, 122.9627], [10.6797, 122.9635], [10.6788, 122.9646], 
+    [10.6783, 122.9649], [10.6776, 122.964], [10.6765, 122.9627], [10.6769, 122.9626], 
+    [10.6775, 122.9618], [10.6778, 122.9616], [10.6779, 122.9611], [10.6782, 122.9607], 
+    [10.6785, 122.9607], [10.679, 122.9609], [10.6795, 122.961]
+];
+const boundaryPolygon = L.polygon(customBoundary);
+
+// Check if user is inside boundary
+function isInsideCustomBoundary(userLat, userLng) {
+    return boundaryPolygon.getBounds().contains(L.latLng(userLat, userLng));
+}
+
+// Function to handle user location and process alert
+async function checkUserLocation() {
+    if (!navigator.geolocation) {
+        showError("Geolocation is not supported by your browser.");
+        return;
+    }
+
+    return new Promise((resolve) => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                let userLat = position.coords.latitude;
+                let userLng = position.coords.longitude;
+
+                if (isInsideCustomBoundary(userLat, userLng)) {
+                    sendAlert(userLat, userLng, "/user-send-alert", resolve);
+                } else {
+                    showError("You're outside La Salle Bacolod campus.");
+                    resolve();
+                }
+            },
+            (error) => {
+                showError("Error getting location: " + error.message);
+                resolve();
+            }
+        );
+    });
+}
+
+// Unified function to send alerts
+function sendAlert(lat, lng, url, resolve, type = "") {
+    let formData = new FormData();
+    formData.append("lat", lat);
+    formData.append("lng", lng);
+    formData.append("_token", csrfToken);
+    if (type) formData.append("type", type);
+
+    sendRequest("POST", url, formData, (error, response) => {
+        const res = typeof response === "string" ? JSON.parse(response) : response;
+        heartLoader.style.display = "none";
+
+        if (!res.status) {
+            showError(res.message);
+        } else {
+            GetActiveAlert();
+            showSuccess(res.message);
+            if (type) emergencyTypeInput.value = "";
+        }
+
+        if (resolve) resolve();
+    });
+}
+
+// Send alert confirmation
 function sendAlertNow() {
     Swal.fire({
         title: "Are you sure?",
@@ -69,275 +142,118 @@ function sendAlertNow() {
         if (result.isConfirmed) {
             heartLoader.style.display = "flex";
             checkUserLocation();
-        } else {
         }
     });
 }
 
-
-// Function to check if the user's location is inside the defined boundary
-function isInsideCustomBoundary(userLat, userLng) {
-    var userPoint = L.latLng(userLat, userLng); // test current location
-
-    var customBoundary = [
-         [10.6797, 122.961], // Point 1 la salle
-         [10.6806, 122.9627], // Point 2 right corner
-         [10.6797, 122.9635], // Point 2 right corner
-         [10.6788, 122.9646], // Point 3
-         [10.6783, 122.9649], // Point 3
-         [10.6776, 122.964], // Point 3
-         [10.6765, 122.9627], // Point 4
-         [10.6769, 122.9626], // Point 5
-         [10.6775, 122.9618], // Point 6
-         [10.6778, 122.9616], // Point 6
-         [10.6779, 122.9611], // Point 6
-         [10.6782, 122.9607], // Point 6 plus
-         [10.6785, 122.9607], // Point 6 man
-         [10.679, 122.9609], // Point 6 creeck
-         [10.6795, 122.961], // Closing point (same as first)
-     ];
-
-    // Convert customBoundary to a Leaflet polygon
-    var boundaryPolygon = L.polygon(customBoundary);
-
-    // Check if the user's location is inside the boundary
-    return boundaryPolygon.getBounds().contains(userPoint);
-}
-
-// Function to get user's current location
-async function checkUserLocation() {
-    return new Promise((resolve) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    var userLat = position.coords.latitude;
-                    var userLng = position.coords.longitude;
-
-                    // var userLat = 10.678985;
-                    // var userLng = 122.96208;
-
-                    if (isInsideCustomBoundary(userLat, userLng)) {
-                        let formData = new FormData();
-                        formData.append("lat", userLat);
-                        formData.append("lng", userLng);
-                        let csrfToken = document
-                            .querySelector('meta[name="csrf-token"]')
-                            .getAttribute("content");
-                        formData.append("_token", csrfToken);
-                        
-                        sendRequest("POST", "/user-send-alert", formData, function (error, response) {
-                                const responseMessage =
-                                    typeof response === "string"
-                                        ? JSON.parse(response)
-                                        : response;
-                                if (!responseMessage.status) {
-                                    Swal.fire({
-                                        toast: true,
-                                        position: "top-end",
-                                        icon: "error",
-                                        title: responseMessage.message,
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                    });
-                                    heartLoader.style.display = "none";
-                                    resolve();
-                                } else {
-                                    GetActiveAlert();
-                                    Swal.fire({
-                                        toast: true,
-                                        position: "top-end",
-                                        icon: "success",
-                                        title: responseMessage.message,
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                    });
-                                    heartLoader.style.display = "none";
-                                    resolve();
-                                }
-                            }
-                        );
-
-                    } else {
-                        Swal.fire({
-                            toast: true,
-                            position: "top-end",
-                            icon: "error",
-                            title: "You're outside La Salle Bacolod campus.",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                        heartLoader.style.display = "none";
-                        resolve();
-                    }
-                },
-                function (error) {
-                    Swal.fire({
-                        toast: true,
-                        position: "top-end",
-                        icon: "error",
-                        title: "Error getting location: " + error.message,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    heartLoader.style.display = "none";
-                    resolve();
-                }
-            );
-        } else {
-            Swal.fire({
-                toast: true,
-                position: "top-end",
-                icon: "error",
-                title: "Geolocation is not supported by your browser.",
-                showConfirmButton: false,
-                timer: 1500,
-            });
-            heartLoader.style.display = "none";
-            resolve();
-        }
-    });
-}
-
+// Send manual alert
 function SendManualAlert() {
-    let typeVal = document.getElementById("emergencyType").value;
-    if (typeVal.trim() == "") {
-        Swal.fire({
-            toast: true,
-            position: "top-end",
-            icon: "error",
-            title: "Select Alert Type",
-            showConfirmButton: false,
-            timer: 1500,
-        });
+    let typeVal = emergencyTypeInput.value.trim();
+    if (!typeVal) {
+        showError("Select Alert Type");
         return;
     }
+
     heartLoader.style.display = "flex";
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    // var userLat = position.coords.latitude;
-                    // var userLng = position.coords.longitude;
 
-                    var userLat = 10.678985;
-                    var userLng = 122.96208;
+    if (!navigator.geolocation) {
+        showError("Geolocation is not supported by your browser.");
+        return;
+    }
 
-                    if (isInsideCustomBoundary(userLat, userLng)) {
-                        let formData = new FormData();
-                        formData.append("lat", userLat);
-                        formData.append("lng", userLng);
-                        let csrfToken = document
-                            .querySelector('meta[name="csrf-token"]')
-                            .getAttribute("content");
-                        formData.append("type", typeVal);
-                        formData.append("_token", csrfToken);
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            // let userLat = position.coords.latitude;
+            // let userLng = position.coords.longitude;
 
-                        sendRequest(
-                            "POST",
-                            "/user-send-manual-alert",
-                            formData,
-                            function (error, response) {
-                                const responseMessage =
-                                    typeof response === "string"
-                                        ? JSON.parse(response)
-                                        : response;
-                                if (!responseMessage.status) {
-                                    Swal.fire({
-                                        toast: true,
-                                        position: "top-end",
-                                        icon: "error",
-                                        title: responseMessage.message,
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                    });
-                                    heartLoader.style.display = "none";
-                                } else {
-                                    GetActiveAlert();
-                                    Swal.fire({
-                                        toast: true,
-                                        position: "top-end",
-                                        icon: "success",
-                                        title: responseMessage.message,
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                    });
-                                    heartLoader.style.display = "none";
-                                    document.getElementById(
-                                        "emergencyType"
-                                    ).value = "";
-                                }
-                            }
-                        );
-                    } else {
-                        Swal.fire({
-                            toast: true,
-                            position: "top-end",
-                            icon: "error",
-                            title: "❌ You are OUTSIDE the custom range.",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                        heartLoader.style.display = "none";
-                        resolve();
-                    }
-                },
-                function (error) {
-                    Swal.fire({
-                        toast: true,
-                        position: "top-end",
-                        icon: "error",
-                        title: "Error getting location: " + error.message,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    heartLoader.style.display = "none";
-                }
-            );
+            let userLat = 10.678985;
+            let userLng = 122.96208;
+
+            if (isInsideCustomBoundary(userLat, userLng)) {
+                sendAlert(userLat, userLng, "/user-send-manual-alert", null, typeVal);
+            } else {
+                showError("❌ You are OUTSIDE the custom range.");
+            }
+        },
+        (error) => {
+            showError("Error getting location: " + error.message);
         }
-}
-let alertData = null;
-async function GetActiveAlert(){
-   const alert = await GetRequest("/user-get-active-alert");
-   document.getElementById("countAlert").textContent = alert.data.length;
-   alertData = alert.data;
+    );
 }
 
-function showAlert() {
-    const divNot = document.getElementById("card-to-show");
-    divNot.innerHTML = "";
-    alertData.forEach((item) => {
-        // Create a new div element
-        const newDiv = document.createElement("div");
+// Display toast messages
+function showError(message) {
+    Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    heartLoader.style.display = "none";
+}
 
-        const responderName = item.responder_name?.trim()
-            ? item.responder_name
-            : "No Responder";
-        // Set the innerHTML of the new div
-        newDiv.innerHTML = `
-            <div class="col-12">
-                            <div class="card border shadow">
-                                <div class="card-body">
-                                    <h5 class="card-title">Type: ${
-                                        item.type
-                                    }</h5>
-                                    <p class="card-text"><strong>Responder:</strong> ${responderName}</p>
-                                    <p class="card-text"><strong>Date:</strong> ${
-                                        item.reported_at
-                                    }</p>
-                                    <p class="card-text"><strong>Status:</strong> <span class="text-white ${
-                                        item.status == "In Progress"
-                                            ? "badge bg-warning"
-                                            : "badge bg-success"
-                                    }">${item.status}</span></p>
-                                </div>
-                            </div>
-                        </div>
-        `;
-
-        // Append the new div to the div-not
-        divNot.appendChild(newDiv);
+function showSuccess(message) {
+    Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
     });
 }
 
+// Get active alerts (Debounced)
+let alertData = null;
+const GetActiveAlert = debounce(async function () {
+    const alert = await GetRequest("/user-get-active-alert");
+    countAlert.textContent = alert.data.length;
+    alertData = alert.data;
+}, 300);
+
+// Function to display alerts
+function showAlert() {
+    cardToShow.innerHTML = "";
+    const fragment = document.createDocumentFragment();
+
+    alertData.forEach((item) => {
+        const newDiv = document.createElement("div");
+        const responderName = item.responder_name?.trim() ? item.responder_name : "No Responder";
+
+        newDiv.innerHTML = `
+            <div class="col-12">
+                <div class="card border shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Type: ${item.type}</h5>
+                        <p class="card-text"><strong>Responder:</strong> ${responderName}</p>
+                        <p class="card-text"><strong>Date:</strong> ${item.reported_at}</p>
+                        <p class="card-text"><strong>Status:</strong> 
+                            <span class="text-white ${item.status === "In Progress" ? "badge bg-warning" : "badge bg-success"}">
+                                ${item.status}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+        fragment.appendChild(newDiv);
+    });
+
+    cardToShow.appendChild(fragment);
+}
+
+// Debounce function to optimize performance
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+// Load active alerts on page load
 $(document).ready(function () {
     GetActiveAlert();
 });
