@@ -168,9 +168,10 @@
                                         <button
                                             class="btn btn-danger btn-lg flex-grow-1 rounded-start-pill fw-bold py-5"
                                             {{-- data-bs-target="#swipe" data-bs-toggle="modal" --}}
-                                            style="font-size: 2.5rem; transition: 0.3s ease;" onclick="sendAlertNow()">
-                                            <span class="me-3 ms-4">Alert</span>
-                                            <i class="bi bi-exclamation-triangle-fill fs-1"></i>
+                                            style="font-size: 2.5rem; transition: 0.3s ease;" id="AlertBTN" onclick="sendAlertNow()">
+                                            <span class="me-3 ms-4" id="alertSpan">Alert</span>
+                                            <i class="bi bi-exclamation-triangle-fill fs-1" id="alerticonSpan"></i>
+                                             <span id="countdown" style="display: none">00:30</span>
                                         </button>
                                         <button class="btn btn-warning btn-lg rounded-end-pill fw-bold py-5 px-4"
                                             data-bs-target="#viewAlert" data-bs-toggle="modal"
@@ -212,8 +213,10 @@
                                         <!-- Submit Help Request Button -->
                                         <div class="d-grid">
                                             <button type="button" class="btn btn-success fw-bold py-3"
-                                                onclick="SendManualAlert()">
-                                                <i class="bi bi-send-fill me-2"></i> Send Help Request
+                                                onclick="SendManualAlert()" id="ManualAlertBtn">
+                                                <i class="bi bi-send-fill me-2" id="ManualAlertIcon"></i> 
+                                                <span id="ManualAlertSpan">Send Help Request</span>
+                                                <span id="countdown2" style="display: none">00:30</span>
                                             </button>
                                         </div>
                                     </form>

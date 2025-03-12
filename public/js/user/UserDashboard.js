@@ -1,61 +1,4 @@
-// const swipeBtn = document.getElementById("swipeBtn");
-// const container = document.querySelector(".swipe-container");
-// let isDragging = false,
-//     startX = 0,
-//     currentX = 0,
-//     initialLeft = 125;
 
-// swipeBtn.addEventListener("mousedown", startDrag);
-// swipeBtn.addEventListener("touchstart", startDrag);
-
-// function startDrag(e) {
-//     isDragging = true;
-//     startX = e.touches ? e.touches[0].clientX : e.clientX;
-//     document.addEventListener("mousemove", moveDrag);
-//     document.addEventListener("mouseup", endDrag);
-//     document.addEventListener("touchmove", moveDrag);
-//     document.addEventListener("touchend", endDrag);
-// }
-
-// function moveDrag(e) {
-//     if (!isDragging) return;
-//     currentX = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
-//     let newLeft = initialLeft + currentX;
-
-//     if (newLeft <= 5) {
-//         swipeBtn.style.left = "5px";
-//         container.style.background = "#dc3545"; // Red for cancel
-//         swipeBtn.innerHTML = "✖";
-//     } else if (newLeft >= 245) {
-//         swipeBtn.style.left = "245px";
-//         container.style.background = "#28a745"; // Green for unlock
-//         swipeBtn.innerHTML = "✔";
-//     } else {
-//         swipeBtn.style.left = `${newLeft}px`;
-//         container.style.background = "#e9ecef";
-//         swipeBtn.innerHTML = "↔";
-//     }
-// }
-
-// async function endDrag() {
-//     isDragging = false;
-//     let finalLeft = parseInt(swipeBtn.style.left);
-
-//     if (finalLeft <= 5) {
-//         $("#swipe").modal("hide");
-//     } else if (finalLeft >= 245) {
-//         await checkUserLocation();
-//         $("#swipe").modal("hide");
-//     }
-
-//     swipeBtn.style.left = "125px"; // Reset to center
-//     swipeBtn.innerHTML = "↔";
-//     container.style.background = "#e9ecef";
-//     document.removeEventListener("mousemove", moveDrag);
-//     document.removeEventListener("mouseup", endDrag);
-//     document.removeEventListener("touchmove", moveDrag);
-//     document.removeEventListener("touchend", endDrag);
-// }
 // Cache DOM elements
 let heartLoader = document.getElementById("overlay-mia");
 let emergencyTypeInput = document.getElementById("emergencyType");
@@ -83,7 +26,7 @@ async function checkUserLocation() {
         showError("Geolocation is not supported by your browser.");
         return;
     }
-
+    startCountdown();
     return new Promise((resolve) => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -155,7 +98,7 @@ function SendManualAlert() {
     }
 
     heartLoader.style.display = "flex";
-
+    startCountdown();
     if (!navigator.geolocation) {
         showError("Geolocation is not supported by your browser.");
         return;
@@ -252,8 +195,68 @@ function debounce(func, wait) {
         timeout = setTimeout(() => func.apply(this, args), wait);
     };
 }
+let AlertSpan = document.getElementById("alertSpan");
+let AlertIcon = document.getElementById("alerticonSpan");
+let AlertButton = document.getElementById("AlertBTN");
+
+let ManualAlertBtn = document.getElementById("ManualAlertBtn");
+let ManualAlertIcon = document.getElementById("ManualAlertIcon");
+let ManualAlertSpan = document.getElementById("ManualAlertSpan");
+
+function startCountdown() {
+    localStorage.setItem("checkTmer", "true");
+    let timer = 30;
+    const countdownElement = document.getElementById("countdown");
+    countdownElement.style.display = "flex";
+    AlertSpan.style.display = "none";
+    AlertIcon.style.display = "none";
+    AlertButton.disabled = true;
+
+    const countdownElement2 = document.getElementById("countdown2");
+    countdownElement2.style.display = "flex";
+
+    ManualAlertSpan.style.display = "none";
+    ManualAlertIcon.style.display = "none";
+    ManualAlertBtn.disabled = true;
+
+    const interval = setInterval(() => {
+        let minutes = Math.floor(timer / 60);
+        let seconds = timer % 60;
+
+        // Format time as MM:SS
+        countdownElement.textContent =
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(seconds).padStart(2, "0");
+
+        countdownElement2.textContent =
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(seconds).padStart(2, "0");
+
+        if (timer === 0) {
+            clearInterval(interval);
+            countdownElement.style.display = "none";
+            AlertSpan.style.display = "flex";
+            AlertIcon.style.display = "flex";
+            AlertButton.disabled = false;
+
+            countdownElement2.style.display = "none";
+            ManualAlertSpan.style.display = "flex";
+            ManualAlertIcon.style.display = "flex";
+            ManualAlertBtn.disabled = false;
+            localStorage.setItem("checkTmer", "false");
+        } else {
+            timer--;
+        }
+    }, 1000);
+}
 
 // Load active alerts on page load
 $(document).ready(function () {
     GetActiveAlert();
+    let check = localStorage.getItem("checkTmer");
+    if(check){
+        startCountdown();
+    }
 });
